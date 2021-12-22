@@ -2,30 +2,28 @@ import React, { useState } from "react";
 
 const NewWord = (props) => {
   const [word, setWord] = useState({ id: "", word: "", story: "" });
-  const required_fields = ["id", "word", "story"];
+  const validateWord = (obj) => {
+    if (obj.word) {
+      props.addNewWord(word);
+    } else {
+      console.log('Word can\'t be blank');
+    }
+  };
 
   const handleChange = (e) => {
+    const name = e.target.name;
     const value = e.target.value;
 
     setWord({
       ...word,
       id: props.list.length + 1,
-      [e.target.name]: value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    required_fields.forEach(function (field) {
-      if (word.hasOwnProperty(field)) {
-        if (word[field]) {
-          console.log(field + ": " + word[field]);
-          props.addNewWord(word);
-        } else {
-          console.log(field + " exists but is empty");
-        }
-      }
-    });
+    validateWord(word);
     setWord({ id: "", word: "", story: "" });
   };
 
