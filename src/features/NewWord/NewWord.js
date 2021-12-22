@@ -35,9 +35,9 @@ const NewWord = (props) => {
 
   return (
     <>
-      <Container>
-        <h1>Add New Word</h1>
+      <Container className="py-4">
         <Stack gap={2} className="col-md-5 mx-auto">
+          <h2>Add New Word</h2>
           <Form.Control
             type="text"
             name="word"
@@ -52,7 +52,7 @@ const NewWord = (props) => {
             value={word.story}
             placeholder="Add story here"
             onChange={handleChange}
-            style={{ height: "100px" }}
+            style={{ height: "200px" }}
           />
           <Button variant="primary" onClick={handleSubmit}>
             Add

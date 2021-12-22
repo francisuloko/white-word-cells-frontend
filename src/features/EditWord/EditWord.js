@@ -52,7 +52,7 @@ const EditWord = (props) => {
             name="story"
             value={word.story}
             onChange={handleChange}
-            style={{ height: "100px" }}
+            style={{ height: "200px" }}
           />
           <Button variant="primary" onClick={handleSubmit}>
             Save
