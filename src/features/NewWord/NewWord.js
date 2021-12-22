@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Container, Stack, Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const NewWord = (props) => {
   const navigate = useNavigate();
@@ -27,39 +29,40 @@ const NewWord = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validateWord(word);
-    console.log(word.word + ' added');
+    console.log(word.word + " added");
     setWord({ id: "", word: "", story: "" });
   };
 
   return (
-    <div>
-      <h1>Add New Word</h1>
-      <div>
-        <input
-          type="text"
-          name="word"
-          value={word.word}
-          placeholder="Add new word"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <textarea
-          name="story"
-          value={word.story}
-          placeholder="What's your story"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <button type="submit" value="Submit" onClick={handleSubmit}>
-          Add
-        </button>
-        <button type="submit" value="Back" onClick={() => navigate("/")}>
-          Back
-        </button>
-      </div>
-    </div>
+    <>
+      <Container>
+        <h1>Add New Word</h1>
+        <Stack gap={2} className="col-md-5 mx-auto">
+          <Form.Control
+            type="text"
+            name="word"
+            value={word.word}
+            size="lg"
+            placeholder="Add new word"
+            onChange={handleChange}
+          />
+          <Form.Control
+            as="textarea"
+            name="story"
+            value={word.story}
+            placeholder="Add story here"
+            onChange={handleChange}
+            style={{ height: "100px" }}
+          />
+          <Button variant="primary" onClick={handleSubmit}>
+            Add
+          </Button>
+          <Button variant="secondary" onClick={() => navigate("/")}>
+            Cancel
+          </Button>
+        </Stack>
+      </Container>
+    </>
   );
 };
 
