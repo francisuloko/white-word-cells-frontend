@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Stack, Form } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { Container, Stack, Form, Button } from "react-bootstrap";
 
 const NewWord = (props) => {
   const navigate = useNavigate();

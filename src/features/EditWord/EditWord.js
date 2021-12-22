@@ -44,7 +44,6 @@ const EditWord = (props) => {
             name="word"
             value={word.word}
             onChange={handleChange}
-            value={word.word}
             size="lg"
           />
           <Form.Control

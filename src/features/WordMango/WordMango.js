@@ -1,5 +1,7 @@
 import React from "react";
+import { PencilSquare, Trash } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const WordMango = (props) => {
   const navigate = useNavigate();
@@ -18,17 +20,23 @@ const WordMango = (props) => {
     <li key={obj.id}>
       <span>{obj.word}: </span>
       <span>{obj.story}</span>
-      <button
+      <Button
         type="submit"
         value="Submit"
+        variant="white"
         onClick={() => handleEdit(obj)}
         handleDelete={handleDelete}
       >
-        Edit
-      </button>
-      <button type="submit" value="Submit" onClick={() => handleDelete(obj.id)}>
-        Delete
-      </button>
+        <PencilSquare className="fs-4" />
+      </Button>
+      <Button
+        type="submit"
+        variant="white"
+        value="Submit"
+        onClick={() => handleDelete(obj.id)}
+      >
+        <Trash className="fs-4" />
+      </Button>
     </li>
   ));
 
