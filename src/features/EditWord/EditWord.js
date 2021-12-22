@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const NewWord = (props) => {
+const EditWord = (props) => {
   const navigate = useNavigate();
-  const [word, setWord] = useState({ id: "", word: "", story: "" });
+  const { state } = useLocation();
+  const [word, setWord] = useState(state);
 
   const validateWord = (obj) => {
     if (obj.word) {
-      props.addNewWord(word);
+      const updatedItem = props.list.map((item) => {
+        return item.id === obj.id ? obj : item;
+      });
+      props.updateWord(updatedItem);
     } else {
       console.log("Word can't be blank");
     }
@@ -19,7 +23,6 @@ const NewWord = (props) => {
 
     setWord({
       ...word,
-      id: props.list.length + 1,
       [name]: value,
     });
   };
@@ -27,19 +30,18 @@ const NewWord = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validateWord(word);
-    console.log(word.word + ' added');
-    setWord({ id: "", word: "", story: "" });
+    navigate("/");
   };
 
   return (
     <div>
-      <h1>Add New Word</h1>
+      <h1>Edit Word</h1>
       <div>
         <input
           type="text"
           name="word"
           value={word.word}
-          placeholder="Add new word"
+          placeholder="Edit word"
           onChange={handleChange}
         />
       </div>
@@ -53,14 +55,14 @@ const NewWord = (props) => {
       </div>
       <div>
         <button type="submit" value="Submit" onClick={handleSubmit}>
-          Add
+          Update
         </button>
         <button type="submit" value="Back" onClick={() => navigate("/")}>
-          Back
+          Cancel
         </button>
       </div>
     </div>
   );
 };
 
-export default NewWord;
+export default EditWord;

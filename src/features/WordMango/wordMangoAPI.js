@@ -1,4 +1,4 @@
-const WordList = [
+const Words = [
   {
     id: 1,
     word: "Hello",
@@ -15,4 +15,4 @@ const WordList = [
   }
 ];
 
-export default WordList;
+export default Words;
