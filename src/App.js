@@ -10,11 +10,12 @@ function App() {
   const handleNewWord = (word) => {
     setList([...list, word]);
   }
+  console.log(list);
 
   return (
     <div className="App">
       <WordMango wordList={list} />
-      <NewWord addNewWord={handleNewWord} />
+      <NewWord addNewWord={handleNewWord} list={list} />
     </div>
   );
 }

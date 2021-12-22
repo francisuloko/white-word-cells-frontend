@@ -1,26 +1,32 @@
 import React, { useState } from "react";
-import words from "../WordMango/wordMangoAPI";
 
 const NewWord = (props) => {
-  const [word, setWord] = useState({
-    id: '',
-    word: '',
-    story: ''
-  });
+  const [word, setWord] = useState({ id: "", word: "", story: "" });
+  const required_fields = ["id", "word", "story"];
 
   const handleChange = (e) => {
     const value = e.target.value;
 
     setWord({
       ...word,
-      id: words.length + 1,
+      id: props.list.length + 1,
       [e.target.name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addNewWord(word);
+    required_fields.forEach(function (field) {
+      if (word.hasOwnProperty(field)) {
+        if (word[field]) {
+          console.log(field + ": " + word[field]);
+          props.addNewWord(word);
+        } else {
+          console.log(field + " exists but is empty");
+        }
+      }
+    });
+    setWord({ id: "", word: "", story: "" });
   };
 
   return (
