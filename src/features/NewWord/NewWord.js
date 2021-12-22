@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NewWord = (props) => {
+  const navigate = useNavigate();
   const [word, setWord] = useState({ id: "", word: "", story: "" });
+
   const validateWord = (obj) => {
     if (obj.word) {
       props.addNewWord(word);
     } else {
-      console.log('Word can\'t be blank');
+      console.log("Word can't be blank");
     }
   };
 
@@ -24,13 +27,14 @@ const NewWord = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validateWord(word);
+    console.log(word.word + ' added');
     setWord({ id: "", word: "", story: "" });
   };
 
   return (
     <div>
       <h1>Add New Word</h1>
-      <form onSubmit={handleSubmit}>
+      <div>
         <input
           type="text"
           name="word"
@@ -38,16 +42,23 @@ const NewWord = (props) => {
           placeholder="Add new word"
           onChange={handleChange}
         />
-        <br />
+      </div>
+      <div>
         <textarea
           name="story"
           value={word.story}
           placeholder="What's your story"
           onChange={handleChange}
         />
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+      </div>
+      <div>
+        <button type="submit" value="Submit" onClick={handleSubmit}>
+          Add
+        </button>
+        <button type="submit" value="Back" onClick={() => navigate("/")}>
+          Back
+        </button>
+      </div>
     </div>
   );
 };
