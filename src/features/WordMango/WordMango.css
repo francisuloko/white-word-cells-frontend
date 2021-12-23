@@ -1,50 +1,46 @@
 header {
   width: 100%;
   z-index: 1;
-  /* display: none; */
 }
 
-.carousel {
-  background: red; 
+.module {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
+  background-size: cover;
+  width: 300px;
+  height: 200px;
+  position: relative;
+  float: left;
 }
 
-.carousel-item img {
-  width: 60%;
-  height: 60%;
+.carousel-item {
+  height: 90vh;
 }
 
-/* 
-anchors are inline so you need it make them block to go full width
-*/
-.carousel-item a {
-  display: block;
-  width: 60%;
-  height: 60%;
+.mid .carousel-caption {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  color: white;
+  /* text-transform: uppercase; */
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1rem;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.carousel-control-prev {
-  color:#036;
-  margin-left: -.5rem;
-  z-index: 10;
-}
-
-.carousel-control-next {
-  color:#036;
-  margin-right: -.5rem;
-  z-index: 10;
-}
-
-.carousel-control-prev:hover {
-  color:#0084FF;
-}
-
-.carousel-control-next:hover {
-  color:#0084FF;
-}
-
-.story {
-  padding: 20px;
-  text-justify: newspaper;
-  height: 350px;
-  overflow: auto;
+pre {
+  width: 70%;
+  height: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
 }
