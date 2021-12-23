@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { BrightnessHigh } from "react-bootstrap-icons";
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,13 +12,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")}>
-            <img
-              alt=""
-              src="/logo.svg"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{" "}
+            <BrightnessHigh className="mx-2" />
             Word Mango
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
