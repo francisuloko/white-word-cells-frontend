@@ -12,7 +12,7 @@ const WordMango = (props) => {
   };
 
   const wordList = props.wordList.map((obj) => (
-    <Carousel.Item style={{ height: "100", backgroundColor: "#000" }}>
+    <Carousel.Item style={{ height: "", backgroundColor: "#000" }}>
       <img
         className="w-100"
         src="https://picsum.photos/200"
@@ -26,17 +26,17 @@ const WordMango = (props) => {
           <span className="fs-1">{obj.word}</span>
           <BoxArrowUpRight className=" mx-3 fs-5" />
         </div>
-        <pre className="story p-2 m-2 w-100">{obj.story}</pre>
+        <pre className="story">{obj.story}</pre>
       </Carousel.Caption>
     </Carousel.Item>
   ));
 
   return (
-    <Container className="py-5">
+    <Container className="">
       {wordList.length > 0 ? (
-        <Carousel> {wordList}</Carousel>
+        <Carousel>{wordList}</Carousel>
       ) : (
-        <h2 className="py-5">Add a new word</h2>
+        <h2 className="">Add a new word</h2>
       )}
     </Container>
   );
