@@ -1,6 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.css";
 
 .App {
-  padding: 0;
   position: relative;
+  background-color: #333;
+  height: 100vh;
 }
