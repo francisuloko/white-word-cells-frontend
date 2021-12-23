@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <header>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")}>
@@ -32,7 +32,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    </header>
   );
 };
 
