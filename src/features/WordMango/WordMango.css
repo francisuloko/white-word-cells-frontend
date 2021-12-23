@@ -21,10 +21,9 @@ header {
   font-family: "Roboto", sans-serif;
   font-weight: 900;
   color: white;
-  /* text-transform: uppercase; */
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   font-size: 1rem;
   transform: translate(-50%, -50%);
@@ -43,4 +42,8 @@ pre {
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word;
+}
+
+.edit-btn {
+  cursor: pointer;
 }

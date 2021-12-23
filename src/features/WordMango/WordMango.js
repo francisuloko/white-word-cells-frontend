@@ -16,7 +16,7 @@ const WordMango = (props) => {
       <Carousel.Caption>
         <h2
           onClick={() => handleEdit(obj)}
-          className="d-flex align-items-center"
+          className="d-flex align-items-center edit-btn"
         >
           <span className="fs-1">{obj.word}</span>
           <BoxArrowUpRight className=" mx-3 fs-6" />
@@ -31,7 +31,13 @@ const WordMango = (props) => {
       {wordList.length > 0 ? (
         <Carousel>{wordList}</Carousel>
       ) : (
-        <h2 className="">Add a new word</h2>
+        <Carousel>
+          <Carousel.Item className="module mid">
+            <Carousel.Caption>
+              <h2 className="d-flex align-items-center">Add a new word.</h2>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
       )}
     </>
   );
