@@ -1,7 +1,7 @@
 import React from "react";
-import { PencilSquare, Trash } from "react-bootstrap-icons";
+import { BoxArrowUpRight } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 
 const WordMango = (props) => {
   const navigate = useNavigate();
@@ -10,40 +10,37 @@ const WordMango = (props) => {
     navigate("/edit", { state: obj });
   };
 
-  const handleDelete = (id) => {
-    const updatedList = props.wordList.filter((obj) => obj.id !== id);
-    props.updateList(updatedList);
-    console.log("You deleted a word");
-  };
-
   const wordList = props.wordList.map((obj) => (
-    <li key={obj.id}>
-      <span>{obj.word}: </span>
-      <span>{obj.story}</span>
-      <Button
-        type="submit"
-        value="Submit"
-        variant="white"
-        onClick={() => handleEdit(obj)}
-        handleDelete={handleDelete}
-      >
-        <PencilSquare className="fs-4" />
-      </Button>
-      <Button
-        type="submit"
-        variant="white"
-        value="Submit"
-        onClick={() => handleDelete(obj.id)}
-      >
-        <Trash className="fs-4" />
-      </Button>
-    </li>
+    <Carousel.Item>
+      <img
+        className="w-100"
+        src="https://source.unsplash.com/random/300x200"
+        alt="First slide"
+      />
+      <Carousel.Caption className="py-0">
+        <h2>
+          <Button
+            className="d-flex align-top"
+            type="submit"
+            value="Submit"
+            variant="white"
+            onClick={() => handleEdit(obj)}
+            style={{ fontSize: "30px", color: "#fff"}}
+          >
+            <span>{obj.word}</span>
+            <BoxArrowUpRight className="m-3 fs-4" />
+          </Button>
+        </h2>
+        <p>{obj.story}</p>
+      </Carousel.Caption>
+    </Carousel.Item>
   ));
 
   return (
     <div>
-      <h1>Word List</h1>
-      <ul>{wordList.length > 0 ? wordList : "Add a new word"}</ul>
+      <Carousel className="h-100">
+        {wordList.length > 0 ? wordList : "Add a new word"}
+      </Carousel>
     </div>
   );
 };

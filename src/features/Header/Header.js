@@ -1,17 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {
-  Container,
-  Nav,
-  Navbar
-} from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand onClick={() => navigate("/")}>
             <img
               alt=""
               src="/logo.svg"
@@ -24,8 +22,12 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/" className="btn fs-6 text-white">Home</Link>
-              <Link to="/new" className="btn fs-6 text-white">Add</Link>
+              <Link to="/" className="btn fs-6 text-white">
+                Home
+              </Link>
+              <Link to="/new" className="btn fs-6 text-white">
+                Add
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

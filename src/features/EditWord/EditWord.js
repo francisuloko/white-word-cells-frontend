@@ -34,6 +34,13 @@ const EditWord = (props) => {
     navigate("/");
   };
 
+  const handleDelete = (id) => {
+    const updatedList = props.list.filter((obj) => obj.id !== id);
+    props.updateWord(updatedList);
+    console.log("You deleted a word");
+    navigate("/");
+  };
+
   return (
     <>
       <Container>
@@ -56,8 +63,13 @@ const EditWord = (props) => {
           <Button variant="primary" onClick={handleSubmit}>
             Save
           </Button>
-          <Button variant="secondary" onClick={() => navigate("/")}>
-            Cancel
+          <Button
+            type="submit"
+            variant="white"
+            value="Submit"
+            onClick={() => handleDelete(word.id)}
+          >
+            Delete
           </Button>
         </Stack>
       </Container>
