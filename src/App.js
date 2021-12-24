@@ -23,8 +23,8 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Header />
         <div>
-          <Header />
           <Routes>
             <Route
               exact

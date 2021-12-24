@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Container, Stack, Form, Button } from "react-bootstrap";
 
 const EditWord = (props) => {
   const navigate = useNavigate();
@@ -33,35 +34,46 @@ const EditWord = (props) => {
     navigate("/");
   };
 
+  const handleDelete = (id) => {
+    const updatedList = props.list.filter((obj) => obj.id !== id);
+    props.updateWord(updatedList);
+    console.log("You deleted a word");
+    navigate("/");
+  };
+
   return (
-    <div>
-      <h1>Edit Word</h1>
-      <div>
-        <input
-          type="text"
-          name="word"
-          value={word.word}
-          placeholder="Edit word"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <textarea
-          name="story"
-          value={word.story}
-          placeholder="What's your story"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <button type="submit" value="Submit" onClick={handleSubmit}>
-          Update
-        </button>
-        <button type="submit" value="Back" onClick={() => navigate("/")}>
-          Cancel
-        </button>
-      </div>
-    </div>
+    <>
+      <Container className="pt-5">
+        <Stack gap={2} className="col-md-5 mx-auto">
+          <h2 className="text-center">Edit Word</h2>
+          <Form.Control
+            type="text"
+            name="word"
+            value={word.word}
+            onChange={handleChange}
+            size="lg"
+          />
+          <Form.Control
+            as="textarea"
+            name="story"
+            value={word.story}
+            onChange={handleChange}
+            style={{ height: "200px" }}
+          />
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
+          </Button>
+          <Button
+            type="submit"
+            variant="white"
+            value="Submit"
+            onClick={() => handleDelete(word.id)}
+          >
+            Delete
+          </Button>
+        </Stack>
+      </Container>
+    </>
   );
 };
 
