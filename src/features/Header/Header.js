@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { BrightnessHigh } from "react-bootstrap-icons";
-
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,14 +14,14 @@ const Header = () => {
             <BrightnessHigh className="mx-2" />
             Word Mango
           </Navbar.Brand>
+          <Link to="/new" className="btn fs-6 text-white">
+            <Button>Create</Button>
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto d-flex align-items-center">
               <Link to="/" className="btn fs-6 text-white">
                 Home
-              </Link>
-              <Link to="/new" className="btn fs-6 text-white">
-                Add
               </Link>
             </Nav>
           </Navbar.Collapse>
