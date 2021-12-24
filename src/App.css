@@ -1,7 +1,25 @@
 @import "bootstrap/dist/css/bootstrap.css";
 
+* {
+  /* border: 1px solid #fff; */
+}
+
 .App {
   position: relative;
-  background-color: #333;
+  background-color: #fff;
   height: 100vh;
+  overflow: hidden;
+}
+
+pre {
+  width: 90%;
+  height: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  overflow: auto;
 }
