@@ -1,5 +1,5 @@
 import React from "react";
-import { BoxArrowUpRight } from "react-bootstrap-icons";
+import { PencilSquare } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import "./WordMango.css";
@@ -13,13 +13,13 @@ const WordMango = (props) => {
 
   const wordList = props.wordList.map((obj) => (
     <Carousel.Item className="module mid">
-      <Carousel.Caption>
+      <Carousel.Caption className="py-0">
         <h2
           onClick={() => handleEdit(obj)}
           className="d-flex align-items-center edit-btn"
         >
           <span className="fs-1">{obj.word}</span>
-          <BoxArrowUpRight className=" mx-3 fs-6" />
+          <PencilSquare className=" mx-3 fs-6" />
         </h2>
         <pre>{obj.story}</pre>
       </Carousel.Caption>
@@ -35,6 +35,7 @@ const WordMango = (props) => {
           <Carousel.Item className="module mid">
             <Carousel.Caption>
               <h2 className="d-flex align-items-center">Add a new word.</h2>
+              <pre>Word Mango helps you stay motivated throughout the day.</pre>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

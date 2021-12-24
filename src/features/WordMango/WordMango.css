@@ -5,10 +5,8 @@ header {
 
 .module {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
+    url(https://source.unsplash.com/1600x900/);
   background-size: cover;
-  width: 300px;
-  height: 200px;
   position: relative;
   float: left;
 }
@@ -23,25 +21,15 @@ header {
   color: white;
   margin: 0;
   position: absolute;
-  top: 40%;
+  top: 60%;
   left: 50%;
   font-size: 1rem;
   transform: translate(-50%, -50%);
   width: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-pre {
-  width: 70%;
-  height: 100%;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
 }
 
 .edit-btn {
