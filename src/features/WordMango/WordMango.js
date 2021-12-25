@@ -1,4 +1,5 @@
 import React from "react";
+import CreateButton from "../CreateButton/CreateButton";
 import { PencilSquare } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -33,13 +34,14 @@ const WordMango = (props) => {
       ) : (
         <Carousel>
           <Carousel.Item className="module mid">
-            <Carousel.Caption>
+            <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center">Add a new word.</h2>
               <pre>Word Mango helps you stay motivated throughout the day.</pre>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       )}
+      <CreateButton />
     </>
   );
 };
