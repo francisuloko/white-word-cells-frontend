@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PlusLg } from "react-bootstrap-icons";
+import logo from "../../feather.svg";
 
 const CreateButton = () => {
   return (
@@ -13,8 +13,11 @@ const CreateButton = () => {
       justify-content-end
       align-items-center"
     >
-      <Link to="/new" className="d-flex btn p-3 mb-3 text-white fs-5 btn-primary rounded-circle align-items-center">
-        <PlusLg />
+      <Link
+        to="/new"
+        className="d-flex btn p-3 mb-3 text-white fs-5 btn-primary rounded-circle align-items-center"
+      >
+        <img src={logo} alt="Logo" />
       </Link>
     </div>
   );
