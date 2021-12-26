@@ -7,7 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header>
+    <header className="fixed-top w-100">
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand onClick={() => navigate("/")}>
@@ -16,9 +16,12 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto d-flex align-items-start">
+            <Nav className="me-auto d-flex align-items-center">
               <Link to="/" className="btn fs-6 text-white">
                 Home
+              </Link>
+              <Link to="/" className="btn fs-6 text-white">
+                About
               </Link>
             </Nav>
           </Navbar.Collapse>
