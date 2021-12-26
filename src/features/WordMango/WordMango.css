@@ -9,11 +9,7 @@ header {
   background-size: 100% 100%;
   position: relative;
   float: left;
-  height: fit-content;
-}
-
-.carousel-item {
-  height: 90vh;
+  height: 100vh;
 }
 
 .mid .carousel-caption {
@@ -21,13 +17,14 @@ header {
   font-weight: 900;
   color: white;
   margin: 0;
+  padding: 0;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   font-size: 1rem;
   transform: translate(-50%, -50%);
   width: 80%;
-  height: 80%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
