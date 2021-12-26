@@ -1,4 +1,5 @@
 import React from "react";
+import CreateButton from "../CreateButton/CreateButton";
 import { PencilSquare } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -18,10 +19,10 @@ const WordMango = (props) => {
           onClick={() => handleEdit(obj)}
           className="d-flex align-items-center edit-btn"
         >
-          <span className="fs-1">{obj.word}</span>
+          <span className="fs-1 py-3 m-0">{obj.word}</span>
           <PencilSquare className=" mx-3 fs-6" />
         </h2>
-        <pre>{obj.story}</pre>
+        <p className="px-3 col col-lg-8">{obj.story}</p>
       </Carousel.Caption>
     </Carousel.Item>
   ));
@@ -33,13 +34,14 @@ const WordMango = (props) => {
       ) : (
         <Carousel>
           <Carousel.Item className="module mid">
-            <Carousel.Caption>
-              <h2 className="d-flex align-items-center">Add a new word.</h2>
+            <Carousel.Caption className="col-6">
+              <h2 className="d-flex align-items-center p-3 m-0">Add a new word.</h2>
               <pre>Word Mango helps you stay motivated throughout the day.</pre>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       )}
+      <CreateButton />
     </>
   );
 };
