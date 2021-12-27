@@ -1,26 +1,39 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Navbar, Nav } from "react-bootstrap";
-import { BrightnessHigh } from "react-bootstrap-icons";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import logo from "../../wwc.png";
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="fixed-top w-100">
-      <Navbar bg="dark" variant="dark" expand="lg">
+    <header className="fixed-top w-100 border border-bottom">
+      <Navbar bg="white" variant="light" expand="lg">
         <Container>
-          <Navbar.Brand onClick={() => navigate("/")}>
-            <BrightnessHigh className="mx-2" />
-            White Word Cells
+          <Navbar.Brand
+            className="d-flex align-items-center"
+            onClick={() => navigate("/")}
+          >
+            <img
+              src={logo}
+              alt="createIcon"
+              className="mx-2"
+              style={{ width: "36px" }}
+            />
+            <span className="d-none d-md-inline text-dark">
+              White Word Cells
+            </span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto d-flex align-items-center">
-              <Link to="/" className="btn fs-6 text-white">
+              <Link to="/" className="btn fs-6">
                 Home
               </Link>
-              <Link to="/" className="btn fs-6 text-white">
+              <Link to="/about" className="btn fs-6">
+                How it works
+              </Link>
+              <Link to="/about" className="btn fs-6">
                 About
               </Link>
             </Nav>
