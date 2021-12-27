@@ -30,13 +30,13 @@ const WordMango = (props) => {
   return (
     <>
       {wordList.length > 0 ? (
-        <Carousel>{wordList}</Carousel>
+        <Carousel interval={5000}>{wordList}</Carousel>
       ) : (
         <Carousel>
           <Carousel.Item className="module mid">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">Add a new word.</h2>
-              <pre>Word Mango helps you stay motivated throughout the day.</pre>
+              <p>Word Mango helps you stay motivated throughout the day.</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
