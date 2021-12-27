@@ -36,7 +36,7 @@ const WordMango = (props) => {
           <Carousel.Item className="module mid">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">Add a new word.</h2>
-              <p>Word Mango helps you stay motivated throughout the day.</p>
+              <p>White Word Cells helps you stay motivated when you feel low.</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

@@ -17,7 +17,6 @@ const Header = () => {
             <img
               src={logo}
               alt="createIcon"
-              className="mx-2"
               style={{ width: "36px" }}
             />
             <span className="d-none d-md-inline text-dark">
