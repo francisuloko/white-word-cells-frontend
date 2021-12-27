@@ -4,7 +4,6 @@ import { Container, Stack, Form, Button } from "react-bootstrap";
 
 const NewWord = (props) => {
   const navigate = useNavigate();
-  const charLen = 300;
   const [state, setWord] = useState({ id: "", word: "", story: "" });
 
   const validateWord = (obj) => {
