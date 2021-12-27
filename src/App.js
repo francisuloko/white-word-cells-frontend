@@ -5,6 +5,7 @@ import "./App.css";
 import NewWord from "./features/NewWord/NewWord";
 import EditWord from "./features/EditWord/EditWord";
 import Header from "./features/Header/Header";
+import { About } from "./features/About/About";
 
 function App() {
   const [list, setList] = useState([]);
@@ -35,6 +36,11 @@ function App() {
               exact
               path="/edit"
               element={<EditWord updateWord={handleModify} list={list} />}
+            />
+            <Route
+              exact
+              path="/about"
+              element={<About />}
             />
             <Route
               exact

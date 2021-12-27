@@ -1,6 +1,7 @@
 import React from "react";
+import { PlusLg } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import logo from "../../feather.svg";
+// import createIcon from "../../feather.svg";
 
 const CreateButton = () => {
   return (
@@ -17,7 +18,8 @@ const CreateButton = () => {
         to="/new"
         className="d-flex btn p-3 mb-3 text-white fs-5 btn-primary rounded-circle align-items-center"
       >
-        <img src={logo} alt="Logo" />
+        {/* <img src={createIcon} alt="createIcon" style={{width: "18px"}} /> */}
+        <PlusLg />
       </Link>
     </div>
   );

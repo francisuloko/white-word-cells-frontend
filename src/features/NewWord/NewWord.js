@@ -4,11 +4,12 @@ import { Container, Stack, Form, Button } from "react-bootstrap";
 
 const NewWord = (props) => {
   const navigate = useNavigate();
-  const [word, setWord] = useState({ id: "", word: "", story: "" });
+  const charLen = 300;
+  const [state, setWord] = useState({ id: "", word: "", story: "" });
 
   const validateWord = (obj) => {
     if (obj.word) {
-      props.addNewWord(word);
+      props.addNewWord(state);
     } else {
       console.log("Word can't be blank");
     }
@@ -19,7 +20,7 @@ const NewWord = (props) => {
     const value = e.target.value;
 
     setWord({
-      ...word,
+      ...state,
       id: props.list.length + 1,
       [name]: value,
     });
@@ -27,20 +28,20 @@ const NewWord = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateWord(word);
-    console.log(word.word + " added");
+    validateWord(state);
+    console.log(state.word + " added");
     setWord({ id: "", word: "", story: "" });
   };
 
   return (
     <>
-      <Container className="py-4">
-        <Stack gap={2} className="col-md-5 mx-auto">
+      <Container className="pt-5">
+        <Stack gap={2} className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow">
           <h2>Add New Word</h2>
           <Form.Control
             type="text"
             name="word"
-            value={word.word}
+            value={state.word}
             size="lg"
             placeholder="Add new word"
             onChange={handleChange}
@@ -48,7 +49,7 @@ const NewWord = (props) => {
           <Form.Control
             as="textarea"
             name="story"
-            value={word.story}
+            value={state.story}
             placeholder="Add story here"
             onChange={handleChange}
             style={{ height: "200px" }}
