@@ -44,7 +44,7 @@ const EditWord = (props) => {
   return (
     <>
       <Container className="pt-5">
-        <Stack gap={2} className="col-md-5 mx-auto">
+        <Stack gap={2} className="col-md-4 p-4 mx-auto mt-5 border border-1 rounded shadow">
           <h2 className="text-center">Edit Word</h2>
           <Form.Control
             type="text"
