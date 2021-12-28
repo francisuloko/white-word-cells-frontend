@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="container text-justify col-12 col-md-8 p-5 mt-5">
+    <div className="container text-center col-12 col-md-6 p-5 mt-5">
       <h2>About</h2>
       <p>
         White Word Cells is an affirmation store app that helps you stay
