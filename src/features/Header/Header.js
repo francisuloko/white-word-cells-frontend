@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
 import logo from "../../wwc.png";
 
 const Header = () => {
@@ -11,21 +11,15 @@ const Header = () => {
       <Navbar bg="white" variant="light" expand="lg">
         <Container>
           <Navbar.Brand
-            className="d-flex align-items-center"
+            className="d-flex align-items-center cursor"
             onClick={() => navigate("/")}
           >
-            <img
-              src={logo}
-              alt="createIcon"
-              style={{ width: "36px" }}
-            />
-            <span className="d-none d-md-inline text-dark">
-              White Word Cells
-            </span>
+            <img src={logo} alt="createIcon" style={{ width: "36px" }} />
+            <span className="text-dark">White Word Cells</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto d-flex align-items-center">
+            <Nav className="me-auto d-flex align-items-center col-lg-12">
               <Link to="/" className="btn fs-6">
                 Home
               </Link>
@@ -35,6 +29,21 @@ const Header = () => {
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
+              <Dropdown className="ms-auto">
+                <Dropdown.Toggle variant="" id="dropdown-basic">
+                  User
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/">
+                    Settings
+                  </Dropdown.Item>
+                  <hr />
+                  <Dropdown.Item href="/">
+                    Logout
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
