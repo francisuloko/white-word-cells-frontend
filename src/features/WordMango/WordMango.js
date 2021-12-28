@@ -17,7 +17,7 @@ const WordMango = (props) => {
       <Carousel.Caption className="py-0">
         <h2
           onClick={() => handleEdit(obj)}
-          className="d-flex align-items-center edit-btn"
+          className="d-flex align-items-center cursor"
         >
           <span className="fs-1 py-3 m-0">{obj.word}</span>
           <PencilSquare className=" mx-3 fs-6" />
@@ -35,8 +35,9 @@ const WordMango = (props) => {
         <Carousel>
           <Carousel.Item className="module mid">
             <Carousel.Caption className="col-6">
-              <h2 className="d-flex align-items-center p-3 m-0">Add a new word.</h2>
-              <p>White Word Cells helps you stay motivated when you feel low.</p>
+              <h2 className="d-flex align-items-center p-3 m-0">
+                Add a new word.
+              </h2>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
