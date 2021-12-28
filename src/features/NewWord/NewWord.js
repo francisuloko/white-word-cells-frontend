@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Stack, Form, Button } from "react-bootstrap";
+import { CharacterCount } from "../CharacterCount/CharacterCount";
 
 const NewWord = (props) => {
   const navigate = useNavigate();
-  const [state, setWord] = useState({ id: "", word: "", story: "" });
+  const [state, setWord] = useState({
+    id: "",
+    word: "",
+    story: "",
+  });
 
   const validateWord = (obj) => {
     if (obj.word) {
@@ -27,15 +32,21 @@ const NewWord = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateWord(state);
-    console.log(state.word + " added");
-    setWord({ id: "", word: "", story: "" });
+    if (state.story.length <= 300) {
+      validateWord(state);
+      console.log(state.word + " added");
+      setWord({ word: "", story: "" });
+    } else {
+    }
   };
 
   return (
     <>
       <Container className="pt-5">
-        <Stack gap={2} className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow">
+        <Stack
+          gap={2}
+          className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow"
+        >
           <h2>Add New Word</h2>
           <Form.Control
             type="text"
@@ -53,6 +64,7 @@ const NewWord = (props) => {
             onChange={handleChange}
             style={{ height: "200px" }}
           />
+          <CharacterCount cell={state} />
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
