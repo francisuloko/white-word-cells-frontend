@@ -63,11 +63,11 @@ const EditWord = (props) => {
           />
           <CharacterCount cell={word} />
           <Button variant="primary" onClick={handleSubmit}>
-            Save
+            Done
           </Button>
           <Button
             type="submit"
-            variant="white"
+            variant="secondary"
             value="Submit"
             onClick={() => handleDelete(word.id)}
           >
