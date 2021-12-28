@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Stack, Form, Button } from "react-bootstrap";
+import { CharacterCount } from "../CharacterCount/CharacterCount";
 
 const EditWord = (props) => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const EditWord = (props) => {
   return (
     <>
       <Container className="pt-5">
-        <Stack gap={2} className="col-md-4 p-4 mx-auto mt-5 border border-1 rounded shadow">
+        <Stack gap={2} className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow">
           <h2 className="text-center">Edit Word</h2>
           <Form.Control
             type="text"
@@ -60,6 +61,7 @@ const EditWord = (props) => {
             onChange={handleChange}
             style={{ height: "200px" }}
           />
+          <CharacterCount cell={word} />
           <Button variant="primary" onClick={handleSubmit}>
             Save
           </Button>
