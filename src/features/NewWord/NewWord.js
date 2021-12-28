@@ -69,7 +69,7 @@ const NewWord = (props) => {
             Add
           </Button>
           <Button variant="secondary" onClick={() => navigate("/")}>
-            Cancel
+            Done
           </Button>
         </Stack>
       </Container>

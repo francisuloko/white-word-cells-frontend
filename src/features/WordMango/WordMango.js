@@ -13,7 +13,7 @@ const WordMango = (props) => {
   };
 
   const wordList = props.wordList.map((obj) => (
-    <Carousel.Item className="module mid">
+    <Carousel.Item key={obj.id} className="module mid">
       <Carousel.Caption className="py-0">
         <h2
           onClick={() => handleEdit(obj)}

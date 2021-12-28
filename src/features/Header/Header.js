@@ -29,17 +29,17 @@ const Header = () => {
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
-              <Dropdown className="ms-auto">
+              <Dropdown className="ms-lg-auto">
                 <Dropdown.Toggle variant="" id="dropdown-basic">
                   User
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="/">
+                  <Dropdown.Item key={1} href="/">
                     Settings
                   </Dropdown.Item>
                   <hr />
-                  <Dropdown.Item href="/">
+                  <Dropdown.Item key={2} href="/">
                     Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
