@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Container, Stack, Form, Button } from "react-bootstrap";
-import { CharacterCount } from "../CharacterCount/CharacterCount";
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Container, Stack, Form, Button,
+} from 'react-bootstrap';
+import { CharacterCount } from '../CharacterCount/CharacterCount';
 
 const EditWord = (props) => {
   const navigate = useNavigate();
@@ -10,9 +12,7 @@ const EditWord = (props) => {
 
   const validateWord = (obj) => {
     if (obj.word) {
-      const updatedItem = props.list.map((item) => {
-        return item.id === obj.id ? obj : item;
-      });
+      const updatedItem = props.list.map((item) => (item.id === obj.id ? obj : item));
       props.updateWord(updatedItem);
     } else {
       console.log("Word can't be blank");
@@ -20,8 +20,8 @@ const EditWord = (props) => {
   };
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
 
     setWord({
       ...word,
@@ -32,14 +32,14 @@ const EditWord = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validateWord(word);
-    navigate("/");
+    navigate('/');
   };
 
   const handleDelete = (id) => {
     const updatedList = props.list.filter((obj) => obj.id !== id);
     props.updateWord(updatedList);
-    console.log("You deleted a word");
-    navigate("/");
+    console.log('You deleted a word');
+    navigate('/');
   };
 
   return (
@@ -59,7 +59,7 @@ const EditWord = (props) => {
             name="story"
             value={word.story}
             onChange={handleChange}
-            style={{ height: "200px" }}
+            style={{ height: '200px' }}
           />
           <CharacterCount cell={word} />
           <Button variant="primary" onClick={handleSubmit}>

@@ -1,15 +1,15 @@
-import React from "react";
-import CreateButton from "../CreateButton/CreateButton";
-import { PencilSquare } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
-import { Carousel } from "react-bootstrap";
-import "./WordMango.css";
+import React from 'react';
+import { PencilSquare } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
+import { Carousel } from 'react-bootstrap';
+import CreateButton from '../CreateButton/CreateButton';
+import './WordMango.css';
 
 const WordMango = (props) => {
   const navigate = useNavigate();
 
   const handleEdit = (obj) => {
-    navigate("/edit", { state: obj });
+    navigate('/edit', { state: obj });
   };
 
   const wordList = props.wordList.map((obj) => (

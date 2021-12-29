@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WordMango from "./features/WordMango/WordMango";
-import "./App.css";
-import NewWord from "./features/NewWord/NewWord";
-import EditWord from "./features/EditWord/EditWord";
-import Header from "./features/Header/Header";
-import { About } from "./features/About/About";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import WordMango from './features/WordMango/WordMango';
+import './App.css';
+import NewWord from './features/NewWord/NewWord';
+import EditWord from './features/EditWord/EditWord';
+import Header from './features/Header/Header';
+import { About } from './features/About/About';
 
 function App() {
   const [list, setList] = useState([]);

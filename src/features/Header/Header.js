@@ -1,7 +1,9 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
-import logo from "../../wwc.png";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Container, Nav, Navbar, Dropdown,
+} from 'react-bootstrap';
+import logo from '../../wwc.png';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,9 +14,9 @@ const Header = () => {
         <Container>
           <Navbar.Brand
             className="d-flex align-items-center cursor"
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
           >
-            <img src={logo} alt="createIcon" style={{ width: "36px" }} />
+            <img src={logo} alt="createIcon" style={{ width: '36px' }} />
             <span className="text-dark">White Word Cells</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
