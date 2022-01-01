@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CharacterCount = (props) => {
   const { cell } = props;
-  const charLen = 300 - cell.story.length;
+  const charLen = 300 - cell.description.length;
 
   return (
     <div className="ms-auto px-3">
