@@ -1,68 +1,93 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {
-  Container, Stack, Form, Button,
-} from 'react-bootstrap';
-import CharacterCount from '../CharacterCount/CharacterCount';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Container, Stack, Form, Button } from "react-bootstrap";
+import CharacterCount from "../CharacterCount/CharacterCount";
+import UserService from '../../services/user.service';
 
-const EditCell = (props) => {
-  const { list, updateWord } = props;
+const EditCell = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [word, setWord] = useState(state);
+  const [cell, setCell] = useState(state);
 
-  const validateWord = (obj) => {
-    if (obj.word) {
-      const updatedItem = list.map((item) => (item.id === obj.id ? obj : item));
-      updateWord(updatedItem);
-      return '';
+  const validateCell = (cell) => {
+    if (cell.title) {
+      UserService.editCell(cell.id).then(
+        (response) => {
+          setCells(response.data);
+        },
+        (error) => {
+          const noCells =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+
+          setCells(noCells);
+        }
+      );
+      updateWord(updatedItem); // updating global state
+      return "";
     }
-    return "Word can't be blank";
+    return "title can't be blank";
   };
 
   const handleChange = (e) => {
     const { name } = e.target;
     const { value } = e.target;
 
-    setWord({
-      ...word,
+    setCell({
+      ...cell,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateWord(word);
-    navigate('/');
+    validateCell(cell);
+    navigate("/home");
   };
 
   const handleDelete = (id) => {
-    const updatedList = list.filter((obj) => obj.id !== id);
-    updateWord(updatedList);
-    navigate('/');
+    UserService.deleteCell(cell.id).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        const noCells =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+
+        return noCells;
+      }
+    );
+    updateWord(updatedList); // updating global state
+    navigate("/home");
   };
 
   return (
     <>
       <Container className="pt-5">
-        <Stack gap={2} className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow">
+        <Stack
+          gap={2}
+          className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow"
+        >
           <h2 className="text-center">Edit Word</h2>
           <Form.Control
             type="text"
             name="word"
-            value={word.word}
+            value={cell.title}
             onChange={handleChange}
             size="lg"
           />
           <Form.Control
             as="textarea"
             name="story"
-            value={word.story}
+            value={cell.description}
             onChange={handleChange}
-            style={{ height: '200px' }}
+            style={{ height: "200px" }}
           />
-          <CharacterCount cell={word} />
+          <CharacterCount cell={cell} />
           <Button variant="primary" onClick={handleSubmit}>
             Done
           </Button>
@@ -70,7 +95,7 @@ const EditCell = (props) => {
             type="submit"
             variant="secondary"
             value="Submit"
-            onClick={() => handleDelete(word.id)}
+            onClick={() => handleDelete(cell.id)}
           >
             Delete
           </Button>
@@ -78,11 +103,6 @@ const EditCell = (props) => {
       </Container>
     </>
   );
-};
-
-EditCell.propTypes = {
-  list: PropTypes.isRequired,
-  updateWord: PropTypes.func.isRequired,
 };
 
 export default EditCell;
