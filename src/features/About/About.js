@@ -13,4 +13,4 @@ const About = () => (
   </div>
 );
 
-export { About };
+export default About;

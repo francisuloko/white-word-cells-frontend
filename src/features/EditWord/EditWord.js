@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
-import { CharacterCount } from '../CharacterCount/CharacterCount';
+import CharacterCount from '../CharacterCount/CharacterCount';
 
 const EditWord = (props) => {
+  const { list, updateWord } = props;
   const navigate = useNavigate();
   const { state } = useLocation();
   const [word, setWord] = useState(state);
 
   const validateWord = (obj) => {
     if (obj.word) {
-      const updatedItem = props.list.map((item) => (item.id === obj.id ? obj : item));
-      props.updateWord(updatedItem);
-    } else {
-      console.log("Word can't be blank");
+      const updatedItem = list.map((item) => (item.id === obj.id ? obj : item));
+      updateWord(updatedItem);
+      return '';
     }
+    return "Word can't be blank";
   };
 
   const handleChange = (e) => {
@@ -36,9 +38,8 @@ const EditWord = (props) => {
   };
 
   const handleDelete = (id) => {
-    const updatedList = props.list.filter((obj) => obj.id !== id);
-    props.updateWord(updatedList);
-    console.log('You deleted a word');
+    const updatedList = list.filter((obj) => obj.id !== id);
+    updateWord(updatedList);
     navigate('/');
   };
 
@@ -77,6 +78,11 @@ const EditWord = (props) => {
       </Container>
     </>
   );
+};
+
+EditWord.propTypes = {
+  list: PropTypes.isRequired,
+  updateWord: PropTypes.func.isRequired,
 };
 
 export default EditWord;
