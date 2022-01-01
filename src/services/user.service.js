@@ -3,7 +3,7 @@ import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/test/";
 
-const getPublicContent = () => {
+const getCells = () => {
   return axios.get(API_URL + "cells");
 };
 
@@ -20,7 +20,7 @@ const getAdminBoard = () => {
 };
 
 const userService = {
-  getPublicContent,
+  getCells,
   getUserBoard,
   getModeratorBoard,
   getAdminBoard,

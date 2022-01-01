@@ -20,20 +20,20 @@ const Login = (props) => {
   }, [dispatch]);
 
   const initialValues = {
-    username: "",
+    email: "",
     password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("This field is required!"),
+    email: Yup.string().required("This field is required!"),
     password: Yup.string().required("This field is required!"),
   });
 
   const handleLogin = (formValue) => {
-    const { username, password } = formValue;
+    const { email, password } = formValue;
     setLoading(true);
 
-    dispatch(login({ username, password }))
+    dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
         props.history.push("/profile");
@@ -63,10 +63,10 @@ const Login = (props) => {
         >
           <Form>
             <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <Field name="username" type="text" className="form-control" />
+              <label htmlFor="email">email</label>
+              <Field name="email" type="text" className="form-control" />
               <ErrorMessage
-                name="username"
+                name="email"
                 component="div"
                 className="alert alert-danger"
               />
