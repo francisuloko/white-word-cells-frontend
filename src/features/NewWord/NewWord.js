@@ -1,31 +1,33 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Stack, Form, Button } from "react-bootstrap";
-import { CharacterCount } from "../CharacterCount/CharacterCount";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import {
+  Container, Stack, Form, Button,
+} from 'react-bootstrap';
+import CharacterCount from '../CharacterCount/CharacterCount';
 
 const NewWord = (props) => {
+  const { addNewWord, list } = props;
   const navigate = useNavigate();
   const [state, setWord] = useState({
-    id: "",
-    word: "",
-    story: "",
+    id: '',
+    word: '',
+    story: '',
   });
 
   const validateWord = (obj) => {
     if (obj.word) {
-      props.addNewWord(state);
-    } else {
-      console.log("Word can't be blank");
+      addNewWord(state);
     }
   };
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
 
     setWord({
       ...state,
-      id: props.list.length + 1,
+      id: list.length + 1,
       [name]: value,
     });
   };
@@ -34,9 +36,7 @@ const NewWord = (props) => {
     e.preventDefault();
     if (state.story.length <= 300) {
       validateWord(state);
-      console.log(state.word + " added");
-      setWord({ word: "", story: "" });
-    } else {
+      setWord({ word: '', story: '' });
     }
   };
 
@@ -62,19 +62,24 @@ const NewWord = (props) => {
             value={state.story}
             placeholder="Add story here"
             onChange={handleChange}
-            style={{ height: "200px" }}
+            style={{ height: '200px' }}
           />
           <CharacterCount cell={state} />
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
-          <Button variant="secondary" onClick={() => navigate("/")}>
+          <Button variant="secondary" onClick={() => navigate('/')}>
             Done
           </Button>
         </Stack>
       </Container>
     </>
   );
+};
+
+NewWord.propTypes = {
+  list: PropTypes.isRequired,
+  addNewWord: PropTypes.func.isRequired,
 };
 
 export default NewWord;

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WordMango from "./features/WordMango/WordMango";
-import "./App.css";
-import NewWord from "./features/NewWord/NewWord";
-import EditWord from "./features/EditWord/EditWord";
-import Header from "./features/Header/Header";
-import { About } from "./features/About/About";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import WordMango from './features/WordMango/WordMango';
+import './App.css';
+import NewWord from './features/NewWord/NewWord';
+import EditWord from './features/EditWord/EditWord';
+import Header from './features/Header/Header';
+import About from './features/About/About';
 
 function App() {
   const [list, setList] = useState([]);
@@ -15,9 +15,7 @@ function App() {
   };
 
   const handleModify = (list) => {
-    list.forEach((obj, index) => {
-      obj.id = index + 1;
-    });
+    list.forEach((obj, index) => ({ ...obj, id: index + 1 }));
     setList(list);
   };
 
@@ -37,11 +35,7 @@ function App() {
               path="/edit"
               element={<EditWord updateWord={handleModify} list={list} />}
             />
-            <Route
-              exact
-              path="/about"
-              element={<About />}
-            />
+            <Route exact path="/about" element={<About />} />
             <Route
               exact
               path="/"

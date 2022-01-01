@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const CharacterCount = (props) => {
   const { cell } = props;
@@ -15,4 +16,8 @@ const CharacterCount = (props) => {
   );
 };
 
-export { CharacterCount };
+CharacterCount.propTypes = {
+  cell: PropTypes.string.isRequired,
+};
+
+export default CharacterCount;
