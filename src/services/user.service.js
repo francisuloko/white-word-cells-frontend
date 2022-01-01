@@ -1,23 +1,15 @@
-import axios from "axios";
-import authHeader from "./auth-header";
+import axios from 'axios';
+import authHeader from './auth-header';
 
-const API_URL = "http://localhost:8080/api/test/";
+const API_URL = 'http://localhost:8080/api/test/';
 
-const getCells = () => {
-  return axios.get(API_URL + "cells");
-};
+const getCells = () => axios.get(`${API_URL}cells`, { headers: authHeader() });
 
-const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
-};
+const getUserBoard = () => axios.get(`${API_URL}user`, { headers: authHeader() });
 
-const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod", { headers: authHeader() });
-};
+const getModeratorBoard = () => axios.get(`${API_URL}mod`, { headers: authHeader() });
 
-const getAdminBoard = () => {
-  return axios.get(API_URL + "admin", { headers: authHeader() });
-};
+const getAdminBoard = () => axios.get(`${API_URL}admin`, { headers: authHeader() });
 
 const userService = {
   getCells,

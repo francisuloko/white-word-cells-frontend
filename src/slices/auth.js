@@ -1,50 +1,48 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setMessage } from "./message";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { setMessage } from './message';
 
-import AuthService from "../services/auth.service";
+import AuthService from '../services/auth.service';
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem('user'));
 
 export const register = createAsyncThunk(
-  "auth/register",
+  'auth/register',
   async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await AuthService.register(name, email, password);
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data;
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+      const message = (error.response
+          && error.response.data
+          && error.response.data.message)
+        || error.message
+        || error.toString();
       thunkAPI.dispatch(setMessage(message));
       return thunkAPI.rejectWithValue();
     }
-  }
+  },
 );
 
 export const login = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async ({ name, password }, thunkAPI) => {
     try {
       const data = await AuthService.login(name, password);
       return { user: data };
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+      const message = (error.response
+          && error.response.data
+          && error.response.data.message)
+        || error.message
+        || error.toString();
       thunkAPI.dispatch(setMessage(message));
       return thunkAPI.rejectWithValue();
     }
-  }
+  },
 );
 
-export const logout = createAsyncThunk("auth/logout", async () => {
+export const logout = createAsyncThunk('auth/logout', async () => {
   await AuthService.logout();
 });
 
@@ -53,7 +51,7 @@ const initialState = user
   : { isLoggedIn: false, user: null };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   extraReducers: {
     [register.fulfilled]: (state, action) => {

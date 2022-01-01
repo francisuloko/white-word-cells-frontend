@@ -1,30 +1,29 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Cells from "./features/Cells/Cells";
-import NewCell from "./features/NewCell/NewCell";
-import EditCell from "./features/EditCell/EditCell";
-import Header from "./features/Header/Header";
-import About from "./features/About/About";
-import Login from "./features/Login";
-import Register from "./features/Register";
-import Profile from "./features/Profile";
-import { logout } from "./slices/auth";
-import { clearMessage } from "./actions/message";
-import { history } from "./helpers/history";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Cells from './features/Cells/Cells';
+import NewCell from './features/NewCell/NewCell';
+import EditCell from './features/EditCell/EditCell';
+import Header from './features/Header/Header';
+import About from './features/About/About';
+import Login from './features/Login';
+import Register from './features/Register';
+import Profile from './features/Profile';
+import { history } from './helpers/history';
+import LandingPage from './features/LandingPage';
 
-import "./App.css";
+import './App.css';
 
 function App() {
-  const [list, setList] = useState([]);
+  // const [list, setList] = useState("");
 
-  const handleCreate = (word) => {
-    setList([...list, word]);
-  };
+  // const handleCreate = (word) => {
+  //   setList([...list, word]);
+  // };
 
-  const handleModify = (list) => {
-    list.forEach((obj, index) => ({ ...obj, id: index + 1 }));
-    setList(list);
-  };
+  // const handleModify = (list) => {
+  //   list.forEach((obj, index) => ({ ...obj, id: index + 1 }));
+  //   setList(list);
+  // };
 
   return (
     <div className="App">
@@ -32,25 +31,26 @@ function App() {
         <Header />
         <div>
           <Routes>
-            <Route exact path="/login" element={Login} />
-            <Route exact path="/signup" element={Register} />
-            <Route exact path="/profile" element={Profile} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Register} />
+            <Route exact path="/profile" component={Profile} />
             <Route
               exact
               path="/new"
-              element={<NewCell addNewWord={handleCreate} list={list} />}
+              component={<NewCell addNewWord={handleCreate} list={list} />}
             />
             <Route
               exact
               path="/edit"
-              element={<EditCell updateWord={handleModify} list={list} />}
+              component={<EditCell updateWord={handleModify} list={list} />}
             />
-            <Route exact path="/about" element={<About />} />
+            <Route exact path="/about" component={<About />} />
             <Route
               exact
-              path="/"
-              element={<Cells wordList={list} updateList={handleModify} />}
+              path="/home"
+              component={<Cells wordList={list} updateList={handleModify} />}
             />
+            <Route exact path="/" component={LandingPage} />
           </Routes>
         </div>
       </Router>

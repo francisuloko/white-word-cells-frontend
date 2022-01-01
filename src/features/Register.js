@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  Formik, Field, Form, ErrorMessage,
+} from 'formik';
+import * as Yup from 'yup';
 
-import { register } from "../slices/auth";
-import { clearMessage } from "../slices/message";
+import { register } from '../slices/auth';
+import { clearMessage } from '../slices/message';
 
 const Register = () => {
   const [successful, setSuccessful] = useState(false);
@@ -17,42 +19,41 @@ const Register = () => {
   }, [dispatch]);
 
   const initialValues = {
-    username: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string()
+    name: Yup.string()
       .test(
-        "len",
-        "The username must be between 3 and 20 characters.",
-        (val) =>
-          val && val.toString().length >= 3 && val.toString().length <= 20
+        'len',
+        'The name must be between 3 and 20 characters.',
+        (val) => val && val.toString().length >= 3 && val.toString().length <= 20,
       )
-      .required("This field is required!"),
+      .required('This field is required!'),
     email: Yup.string()
-      .email("This is not a valid email.")
-      .required("This field is required!"),
+      .email('This is not a valid email.')
+      .required('This field is required!'),
     password: Yup.string()
       .test(
-        "len",
-        "The password must be between 6 and 40 characters.",
-        (val) =>
-          val && val.toString().length >= 6 && val.toString().length <= 40
+        'len',
+        'The password must be between 6 and 40 characters.',
+        (val) => val && val.toString().length >= 6 && val.toString().length <= 40,
       )
-      .required("This field is required!"),
+      .required('This field is required!'),
   });
 
   const handleRegister = (formValue) => {
-    const { username, email, password } = formValue;
+    const { name, email, password } = formValue;
 
     setSuccessful(false);
 
-    dispatch(register({ username, email, password }))
+    dispatch(register({ name, email, password }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
+        {/* login user immediately */}
       })
       .catch(() => {
         setSuccessful(false);
@@ -76,10 +77,10 @@ const Register = () => {
             {!successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
-                  <Field name="username" type="text" className="form-control" />
+                  <label htmlFor="name">name</label>
+                  <Field name="name" type="text" className="form-control" />
                   <ErrorMessage
-                    name="username"
+                    name="name"
                     component="div"
                     className="alert alert-danger"
                   />
@@ -124,7 +125,7 @@ const Register = () => {
         <div className="form-group">
           <div
             className={
-              successful ? "alert alert-success" : "alert alert-danger"
+              successful ? 'alert alert-success' : 'alert alert-danger'
             }
             role="alert"
           >

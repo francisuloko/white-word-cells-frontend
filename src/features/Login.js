@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import {
+  Formik, Field, Form, ErrorMessage,
+} from 'formik';
+import * as Yup from 'yup';
 
-import { login } from "../slices/auth";
-import { clearMessage } from "../slices/message";
+import { login } from '../slices/auth';
+import { clearMessage } from '../slices/message';
 
 const Login = (props) => {
   const [loading, setLoading] = useState(false);
+  const { history } = props;
 
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
@@ -20,13 +24,13 @@ const Login = (props) => {
   }, [dispatch]);
 
   const initialValues = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required("This field is required!"),
-    password: Yup.string().required("This field is required!"),
+    email: Yup.string().required('This field is required!'),
+    password: Yup.string().required('This field is required!'),
   });
 
   const handleLogin = (formValue) => {
@@ -36,7 +40,7 @@ const Login = (props) => {
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
-        props.history.push("/profile");
+        history.push('/profile');
         window.location.reload();
       })
       .catch(() => {
@@ -45,7 +49,7 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/profile" />;
+    return <Navigate to="/profile" />;
   }
 
   return (
@@ -64,7 +68,7 @@ const Login = (props) => {
           <Form>
             <div className="form-group">
               <label htmlFor="email">email</label>
-              <Field name="email" type="text" className="form-control" />
+              <Field name="email" type="text" className="form-control" id="email" />
               <ErrorMessage
                 name="email"
                 component="div"
@@ -74,7 +78,7 @@ const Login = (props) => {
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <Field name="password" type="password" className="form-control" />
+              <Field name="password" type="password" className="form-control" id="password" />
               <ErrorMessage
                 name="password"
                 component="div"
@@ -89,7 +93,7 @@ const Login = (props) => {
                 disabled={loading}
               >
                 {loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
+                  <span className="spinner-border spinner-border-sm" />
                 )}
                 <span>Login</span>
               </button>
@@ -107,6 +111,10 @@ const Login = (props) => {
       )}
     </div>
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.func.isRequired,
 };
 
 export default Login;
