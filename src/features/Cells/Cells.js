@@ -15,11 +15,11 @@ const Cells = () => {
         setCells(response.data);
       },
       (error) => {
-        const errCells = (error.response && error.response.data)
+        const noCells = (error.response && error.response.data)
           || error.message
           || error.toString();
 
-        setCells(errCells);
+        setCells(noCells);
       },
     );
   }, []);
@@ -30,7 +30,7 @@ const Cells = () => {
     navigate('/edit', { state: cell });
   };
 
-  const list = cells.map((cell) => (
+  const cellsCollection = cells.map((cell) => (
     <Carousel.Item key={cell.id} className="module mid">
       <Carousel.Caption className="py-0">
         <button
@@ -38,24 +38,24 @@ const Cells = () => {
           onClick={() => handleEdit(cell)}
           className="d-flex align-items-center border border-0 bg-transparent text-white"
         >
-          <span className="fs-1 py-3 m-0">{cell.word}</span>
+          <span className="fs-1 py-3 m-0">{cell.title}</span>
           <PencilSquare className=" mx-3 fs-6" />
         </button>
-        <p className="px-3 col col-lg-8">{cell.story}</p>
+        <p className="px-3 col col-lg-8">{cell.description}</p>
       </Carousel.Caption>
     </Carousel.Item>
   ));
 
   return (
     <>
-      {list.length > 0 ? (
-        <Carousel interval={5000}>{list}</Carousel>
+      {cellsCollection.length > 0 ? (
+        <Carousel interval={5000}>{cellsCollection}</Carousel>
       ) : (
         <Carousel>
           <Carousel.Item className="module mid">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">
-                Add a new word.
+                Add a new Cell.
               </h2>
             </Carousel.Caption>
           </Carousel.Item>
