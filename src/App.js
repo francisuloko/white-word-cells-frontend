@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WordMango from './features/WordMango/WordMango';
-import './App.css';
-import NewWord from './features/NewWord/NewWord';
-import EditWord from './features/EditWord/EditWord';
-import Header from './features/Header/Header';
-import About from './features/About/About';
+import React, { useState, useEffect, useCallback } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Cells from "./features/Cells/Cells";
+import NewCell from "./features/NewCell/NewCell";
+import EditCell from "./features/EditCell/EditCell";
+import Header from "./features/Header/Header";
+import About from "./features/About/About";
+import Login from "./features/Login";
+import Register from "./features/Register";
+import Profile from "./features/Profile";
+import { logout } from "./slices/auth";
+import { clearMessage } from "./actions/message";
+import { history } from "./helpers/history";
+
+import "./App.css";
 
 function App() {
   const [list, setList] = useState([]);
@@ -21,25 +28,28 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
         <Header />
         <div>
           <Routes>
+            <Route exact path="/login" element={Login} />
+            <Route exact path="/signup" element={Register} />
+            <Route exact path="/profile" element={Profile} />
             <Route
               exact
               path="/new"
-              element={<NewWord addNewWord={handleCreate} list={list} />}
+              element={<NewCell addNewWord={handleCreate} list={list} />}
             />
             <Route
               exact
               path="/edit"
-              element={<EditWord updateWord={handleModify} list={list} />}
+              element={<EditCell updateWord={handleModify} list={list} />}
             />
             <Route exact path="/about" element={<About />} />
             <Route
               exact
               path="/"
-              element={<WordMango wordList={list} updateList={handleModify} />}
+              element={<Cells wordList={list} updateList={handleModify} />}
             />
           </Routes>
         </div>

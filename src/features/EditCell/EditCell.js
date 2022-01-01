@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap';
 import CharacterCount from '../CharacterCount/CharacterCount';
 
-const EditWord = (props) => {
+const EditCell = (props) => {
   const { list, updateWord } = props;
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -80,9 +80,9 @@ const EditWord = (props) => {
   );
 };
 
-EditWord.propTypes = {
+EditCell.propTypes = {
   list: PropTypes.isRequired,
   updateWord: PropTypes.func.isRequired,
 };
 
-export default EditWord;
+export default EditCell;
