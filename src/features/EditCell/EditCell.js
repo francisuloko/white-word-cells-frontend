@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Container, Stack, Form, Button } from "react-bootstrap";
-import CharacterCount from "../CharacterCount/CharacterCount";
-import UserService from "../../services/user.service";
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {
+  Container, Stack, Form, Button,
+} from 'react-bootstrap';
+import CharacterCount from '../CharacterCount/CharacterCount';
+import UserService from '../../services/user.service';
 
 const EditCell = () => {
   const navigate = useNavigate();
@@ -12,20 +14,19 @@ const EditCell = () => {
   const handleEdit = (cell) => {
     if (cell.title) {
       UserService.editCell(cell).then(
-        (response) => {
-          "refresh cells";
+        () => {
+
         },
         (error) => {
-          const noCells =
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString();
+          const noCells = (error.response && error.response.data)
+            || error.message
+            || error.toString();
 
-          setCells(noCells);
-        }
+          setCell(noCells);
+        },
       );
-      return;
     }
+
     return "title can't be blank";
   };
 
@@ -41,24 +42,21 @@ const EditCell = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEdit(cell);
-    navigate("/home");
+    navigate('/home');
   };
 
   const handleDelete = (cell) => {
     UserService.deleteCell(cell).then(
-      (response) => {
-        return response.data;
-      },
+      (response) => response.data,
       (error) => {
-        const noCells =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
+        const noCells = (error.response && error.response.data)
+          || error.message
+          || error.toString();
 
         return noCells;
-      }
+      },
     );
-    navigate("/home");
+    navigate('/home');
   };
 
   return (
@@ -81,7 +79,7 @@ const EditCell = () => {
             name="story"
             value={cell.description}
             onChange={handleChange}
-            style={{ height: "200px" }}
+            style={{ height: '200px' }}
           />
           <CharacterCount cell={cell} />
           <Button variant="primary" onClick={handleSubmit}>
