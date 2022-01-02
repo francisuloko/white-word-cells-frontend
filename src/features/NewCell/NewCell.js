@@ -3,30 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
+import UserService from '../../services/user.service';
 import CharacterCount from '../CharacterCount/CharacterCount';
 
-const NewWord = () => {
+const NewCell = () => {
   const navigate = useNavigate();
-  const [cell, setCell] = useState("");
+  const [cell, setCell] = useState('');
 
   const handleCreate = (cell) => {
     if (cell.title) {
       UserService.createCell(cell).then(
-        (response) => {
-          "refresh cells";
-        },
+        () => {},
         (error) => {
-          const noCells =
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString();
+          const noCells = (error.response && error.response.data)
+            || error.message
+            || error.toString();
 
-          setCells(noCells);
-        }
+          setCell(noCells);
+        },
       );
-      return;
     }
-    return "title can't be blank";
   };
 
   const handleChange = (e) => {
@@ -41,7 +37,7 @@ const NewWord = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleCreate(cell);
-    setCell("")
+    setCell('');
   };
 
   return (
@@ -55,7 +51,7 @@ const NewWord = () => {
           <Form.Control
             type="text"
             name="word"
-            value={state.word}
+            value={cell.title}
             size="lg"
             placeholder="Add new word"
             onChange={handleChange}
@@ -63,12 +59,12 @@ const NewWord = () => {
           <Form.Control
             as="textarea"
             name="story"
-            value={state.story}
+            value={cell.description}
             placeholder="Add story here"
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          <CharacterCount cell={state} />
+          <CharacterCount cell={cell} />
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
@@ -81,4 +77,4 @@ const NewWord = () => {
   );
 };
 
-export default NewWord;
+export default NewCell;
