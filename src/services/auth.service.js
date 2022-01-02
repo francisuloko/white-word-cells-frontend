@@ -1,25 +1,23 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/auth/';
+const API_URL = 'http://localhost:3001/';
 
-const register = (name, email, password) => axios.post(`${API_URL}signup`, {
-  name,
-  email,
-  password,
+const login = (email, password) => axios.post(`${API_URL}authenticate`, { email, password }).then((response) => {
+  if (response.data.auth_token) {
+    localStorage.setItem('user', JSON.stringify(response.data));
+  }
+
+  return response.data;
 });
 
-const login = (email, password) => axios
-  .post(`${API_URL}signin`, {
+const register = (name, email, password) => {
+  axios.post(`${API_URL}signup`, {
+    name,
     email,
     password,
-  })
-  .then((response) => {
-    if (response.data.accessToken) {
-      localStorage.setItem('user', JSON.stringify(response.data));
-    }
-
-    return response.data;
   });
+};
 
 const logout = () => {
   localStorage.removeItem('user');

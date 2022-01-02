@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import {
@@ -10,9 +10,9 @@ import * as Yup from 'yup';
 import { login } from '../slices/auth';
 import { clearMessage } from '../slices/message';
 
-const Login = (props) => {
+const Login = () => {
   const [loading, setLoading] = useState(false);
-  const { history } = props;
+  // const { history } = props;
 
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
@@ -40,7 +40,7 @@ const Login = (props) => {
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
-        history.push('/profile');
+        // history.push('/profile');
         window.location.reload();
       })
       .catch(() => {
@@ -67,8 +67,7 @@ const Login = (props) => {
         >
           <Form>
             <div className="form-group">
-              <label htmlFor="email">email</label>
-              <Field name="email" type="text" className="form-control" id="email" />
+              <Field name="email" type="text" className="form-control" placeholder="Email" />
               <ErrorMessage
                 name="email"
                 component="div"
@@ -77,8 +76,7 @@ const Login = (props) => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Field name="password" type="password" className="form-control" id="password" />
+              <Field name="password" type="password" className="form-control" placeholder="Password" />
               <ErrorMessage
                 name="password"
                 component="div"
@@ -113,8 +111,8 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {
-  history: PropTypes.func.isRequired,
-};
+// Login.propTypes = {
+//   history: PropTypes.func.isRequired,
+// };
 
 export default Login;

@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: "error" */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
 
@@ -7,15 +8,19 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ name, email, password }, thunkAPI) => {
+  async ({
+    name,
+    email,
+    password,
+  }, thunkAPI) => {
     try {
       const response = await AuthService.register(name, email, password);
-      thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data;
+      thunkAPI.dispatch(setMessage(response));
+      return response;
     } catch (error) {
       const message = (error.response
-          && error.response.data
-          && error.response.data.message)
+          && error.response
+          && error.response.message)
         || error.message
         || error.toString();
       thunkAPI.dispatch(setMessage(message));
@@ -26,9 +31,9 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ name, password }, thunkAPI) => {
+  async ({ email, password }, thunkAPI) => {
     try {
-      const data = await AuthService.login(name, password);
+      const data = await AuthService.login(email, password);
       return { user: data };
     } catch (error) {
       const message = (error.response
@@ -54,21 +59,21 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled]: (state, action) => {
+    [register.fulfilled]: (state) => {
       state.isLoggedIn = false;
     },
-    [register.rejected]: (state, action) => {
+    [register.rejected]: (state) => {
       state.isLoggedIn = false;
     },
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
     },
-    [login.rejected]: (state, action) => {
+    [login.rejected]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },
-    [logout.fulfilled]: (state, action) => {
+    [logout.fulfilled]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },

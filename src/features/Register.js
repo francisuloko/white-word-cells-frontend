@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -22,6 +23,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
+    password_confirmation: '',
   };
 
   const validationSchema = Yup.object().shape({
@@ -45,15 +47,17 @@ const Register = () => {
   });
 
   const handleRegister = (formValue) => {
-    const { name, email, password } = formValue;
+    const {
+      name, email, password,
+    } = formValue;
 
     setSuccessful(false);
-
-    dispatch(register({ name, email, password }))
+    dispatch(register({
+      name, email, password,
+    }))
       .unwrap()
       .then(() => {
         setSuccessful(true);
-        {/* login user immediately */}
       })
       .catch(() => {
         setSuccessful(false);
@@ -77,8 +81,12 @@ const Register = () => {
             {!successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="name">name</label>
-                  <Field name="name" type="text" className="form-control" />
+                  <Field
+                    name="name"
+                    type="text"
+                    className="form-control"
+                    placeholder="Name"
+                  />
                   <ErrorMessage
                     name="name"
                     component="div"
@@ -87,8 +95,12 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <Field name="email" type="email" className="form-control" />
+                  <Field
+                    name="email"
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                  />
                   <ErrorMessage
                     name="email"
                     component="div"
@@ -97,14 +109,28 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
                   <Field
                     name="password"
                     type="password"
                     className="form-control"
+                    placeholder="Password"
                   />
                   <ErrorMessage
                     name="password"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <Field
+                    name="password_confirmation"
+                    type="password"
+                    className="form-control"
+                    placeholder="Confirm Password"
+                  />
+                  <ErrorMessage
+                    name="password_confirmation"
                     component="div"
                     className="alert alert-danger"
                   />
