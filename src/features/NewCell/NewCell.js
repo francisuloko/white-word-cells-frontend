@@ -1,43 +1,47 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
 import CharacterCount from '../CharacterCount/CharacterCount';
 
-const NewWord = (props) => {
-  const { addNewWord, list } = props;
+const NewWord = () => {
   const navigate = useNavigate();
-  const [state, setWord] = useState({
-    id: '',
-    word: '',
-    story: '',
-  });
+  const [cell, setCell] = useState("");
 
-  const validateWord = (obj) => {
-    if (obj.word) {
-      addNewWord(state);
+  const handleCreate = (cell) => {
+    if (cell.title) {
+      UserService.createCell(cell).then(
+        (response) => {
+          "refresh cells";
+        },
+        (error) => {
+          const noCells =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+
+          setCells(noCells);
+        }
+      );
+      return;
     }
+    return "title can't be blank";
   };
 
   const handleChange = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
-    setWord({
-      ...state,
-      id: list.length + 1,
+    setCell({
+      ...cell,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (state.story.length <= 300) {
-      validateWord(state);
-      setWord({ word: '', story: '' });
-    }
+    handleCreate(cell);
+    setCell("")
   };
 
   return (
@@ -68,18 +72,13 @@ const NewWord = (props) => {
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
-          <Button variant="secondary" onClick={() => navigate('/')}>
+          <Button variant="secondary" onClick={() => navigate('/home')}>
             Done
           </Button>
         </Stack>
       </Container>
     </>
   );
-};
-
-NewWord.propTypes = {
-  list: PropTypes.isRequired,
-  addNewWord: PropTypes.func.isRequired,
 };
 
 export default NewWord;
