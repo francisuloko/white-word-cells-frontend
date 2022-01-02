@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
 import { Container, Stack, Form, Button } from "react-bootstrap";
 import CharacterCount from "../CharacterCount/CharacterCount";
-import UserService from '../../services/user.service';
+import UserService from "../../services/user.service";
 
 const EditCell = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [cell, setCell] = useState(state);
 
-  const validateCell = (cell) => {
+  const handleEdit = (cell) => {
     if (cell.title) {
-      UserService.editCell(cell.id).then(
+      UserService.editCell(cell).then(
         (response) => {
-          setCells(response.data);
+          "refresh cells";
         },
         (error) => {
           const noCells =
@@ -25,15 +24,13 @@ const EditCell = () => {
           setCells(noCells);
         }
       );
-      updateWord(updatedItem); // updating global state
-      return "";
+      return;
     }
     return "title can't be blank";
   };
 
   const handleChange = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
     setCell({
       ...cell,
@@ -43,12 +40,12 @@ const EditCell = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateCell(cell);
+    handleEdit(cell);
     navigate("/home");
   };
 
-  const handleDelete = (id) => {
-    UserService.deleteCell(cell.id).then(
+  const handleDelete = (cell) => {
+    UserService.deleteCell(cell).then(
       (response) => {
         return response.data;
       },
@@ -61,7 +58,6 @@ const EditCell = () => {
         return noCells;
       }
     );
-    updateWord(updatedList); // updating global state
     navigate("/home");
   };
 
