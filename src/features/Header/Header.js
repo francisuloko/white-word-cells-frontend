@@ -1,9 +1,12 @@
-import React, { useEffect, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Container, Nav, Navbar, Dropdown } from "react-bootstrap";
-import logo from "../../wwc.png";
-import { logout } from "../slices/auth";
-import EventBus from "../common/EventBus";
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  Container, Nav, Navbar, Dropdown,
+} from 'react-bootstrap';
+import logo from '../../wwc.png';
+import { logout } from '../../slices/auth';
+import EventBus from '../../common/EventBus';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,12 +18,12 @@ const Header = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    EventBus.on("logout", () => {
+    EventBus.on('logout', () => {
       logOut();
     });
 
     return () => {
-      EventBus.remove("logout");
+      EventBus.remove('logout');
     };
   }, [currentUser, logOut]);
 
@@ -30,9 +33,9 @@ const Header = () => {
         <Container>
           <Navbar.Brand
             className="d-flex align-items-center cursor"
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
           >
-            <img src={logo} alt="createIcon" style={{ width: "36px" }} />
+            <img src={logo} alt="createIcon" style={{ width: '36px' }} />
             <span className="text-dark">White Word Cells</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -53,25 +56,36 @@ const Header = () => {
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
-              <Dropdown className="ms-lg-auto">
-                <Dropdown.Toggle variant="" id="dropdown-basic">
-                  {currentUse.name}
-                </Dropdown.Toggle>
+              {currentUser ? (
+                <Dropdown className="ms-lg-auto">
+                  <Dropdown.Toggle variant="" id="dropdown-basic">
+                    {currentUser.name}
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item key={1}>
-                    <Link to={"/profile"} className="nav-link">
-                      Profile
-                    </Link>
-                  </Dropdown.Item>
-                  <hr />
-                  <Dropdown.Item key={2}>
-                    <Link to={"/login"} className="nav-link" onClick={logOut}>
-                      Logout
-                    </Link>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+                  <Dropdown.Menu>
+                    <Dropdown.Item key={1}>
+                      <Link to="/profile" className="nav-link">
+                        Profile
+                      </Link>
+                    </Dropdown.Item>
+                    <hr />
+                    <Dropdown.Item key={2}>
+                      <Link to="/login" className="nav-link" onClick={logOut}>
+                        Logout
+                      </Link>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              ) : (
+                <div className="ms-lg-auto">
+                  <Link to="/login" className="btn fs-6">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="btn fs-6">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
