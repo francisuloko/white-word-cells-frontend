@@ -4,9 +4,11 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:3001/';
 const authorization = authHeader();
 
-const getCells = () => axios.get(`${API_URL}cells`, { headers: authorization });
+const getCells = () => axios
+  .get(`${API_URL}cells`, { headers: authorization })
+  .then((response) => response);
 
-const deleteCell = (cell) => axios.delete(`${API_URL}cells/${cell.id}`, { headers: authHeader() });
+const deleteCell = (cell) => axios.delete(`${API_URL}cells/${cell.id}`, { headers: authorization });
 
 const editCell = (cell) => {
   axios.put({
@@ -32,20 +34,11 @@ const createCell = (cell) => {
   });
 };
 
-const getUserBoard = () => axios.get(`${API_URL}user`, { headers: authHeader() });
-
-const getModeratorBoard = () => axios.get(`${API_URL}mod`, { headers: authHeader() });
-
-const getAdminBoard = () => axios.get(`${API_URL}admin`, { headers: authHeader() });
-
 const userService = {
   getCells,
   deleteCell,
   editCell,
   createCell,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
 };
 
 export default userService;
