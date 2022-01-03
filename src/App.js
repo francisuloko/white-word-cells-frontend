@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/new" element={<NewCell />} />
             <Route exact path="/edit" element={<EditCell />} />
             <Route exact path="/about" element={<About />} />
-            <Route exact path="/home" element={<Cells />} />
+            <Route exact path="/cells" element={<Cells />} />
             <Route path="/" exact element={<LandingPage />} />
           </Routes>
         </div>

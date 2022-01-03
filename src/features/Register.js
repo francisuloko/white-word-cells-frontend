@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
@@ -11,6 +12,7 @@ import { clearMessage } from '../slices/message';
 
 const Register = () => {
   const [successful, setSuccessful] = useState(false);
+  const navigate = useNavigate();
 
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -58,6 +60,7 @@ const Register = () => {
       .unwrap()
       .then(() => {
         setSuccessful(true);
+        navigate('/cells');
       })
       .catch(() => {
         setSuccessful(false);

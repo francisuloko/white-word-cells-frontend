@@ -68,7 +68,7 @@ const NewCell = () => {
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
-          <Button variant="secondary" onClick={() => navigate('/home')}>
+          <Button variant="secondary" onClick={() => navigate('/cells')}>
             Done
           </Button>
         </Stack>

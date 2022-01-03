@@ -1,12 +1,10 @@
 /* eslint no-param-reassign: "error" */
-/* eslint-disable camelcase */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
 
 import AuthService from '../services/auth.service';
 
 const data = JSON.parse(localStorage.getItem('user'));
-const { auth_token, user } = data;
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -35,8 +33,8 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
-      const user = await AuthService.login(email, password);
-      return user;
+      const data = await AuthService.login(email, password);
+      return data.name;
     } catch (error) {
       const message = (error.response
           && error.response.data
@@ -53,8 +51,8 @@ export const logout = createAsyncThunk('auth/logout', async () => {
   await AuthService.logout();
 });
 
-const initialState = auth_token
-  ? { isLoggedIn: true, user }
+const initialState = data
+  ? { isLoggedIn: true, user: data.name }
   : { isLoggedIn: false, user: null };
 
 const authSlice = createSlice({
@@ -69,7 +67,7 @@ const authSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
-      state.user = action.payload.user;
+      state.user = action.payload;
     },
     [login.rejected]: (state) => {
       state.isLoggedIn = false;

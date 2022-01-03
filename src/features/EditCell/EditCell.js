@@ -42,7 +42,7 @@ const EditCell = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEdit(cell);
-    navigate('/home');
+    navigate('/cells');
   };
 
   const handleDelete = (cell) => {
@@ -56,7 +56,7 @@ const EditCell = () => {
         return noCells;
       },
     );
-    navigate('/home');
+    navigate('/cell');
   };
 
   return (

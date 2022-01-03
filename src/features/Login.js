@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
@@ -12,12 +11,12 @@ import { clearMessage } from '../slices/message';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  // const { history } = props;
 
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  // const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(clearMessage());
@@ -40,17 +39,12 @@ const Login = () => {
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
-      // history.push('/profile');
-        window.location.reload();
+        navigate('/cells');
       })
       .catch(() => {
         setLoading(false);
       });
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/home" />;
-  }
 
   return (
     <div className="col-md-12 login-form">
@@ -120,9 +114,5 @@ const Login = () => {
     </div>
   );
 };
-
-// Login.propTypes = {
-//   history: PropTypes.func.isRequired,
-// };
 
 export default Login;

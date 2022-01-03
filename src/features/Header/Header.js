@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,7 +11,7 @@ import EventBus from '../../common/EventBus';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logOut = useCallback(() => {
@@ -25,7 +26,11 @@ const Header = () => {
     return () => {
       EventBus.remove('logout');
     };
-  }, [user, logOut]);
+  }, [isLoggedIn, logOut]);
+
+  const handleClick = () => (
+    isLoggedIn ? navigate('cells') : navigate('/')
+  );
 
   return (
     <header className="fixed-top w-100 border border-bottom">
@@ -33,7 +38,7 @@ const Header = () => {
         <Container>
           <Navbar.Brand
             className="d-flex align-items-center cursor"
-            onClick={() => navigate('/')}
+            onClick={handleClick}
           >
             <img src={logo} alt="createIcon" style={{ width: '36px' }} />
             <span className="text-dark">White Word Cells</span>
@@ -41,8 +46,8 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto d-flex align-items-center col-lg-12">
-              {user ? (
-                <Link to="/home" className="btn fs-6">
+              { isLoggedIn ? (
+                <Link to="/cells" className="btn fs-6">
                   Home
                 </Link>
               ) : (
@@ -56,10 +61,10 @@ const Header = () => {
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
-              {user ? (
+              { isLoggedIn ? (
                 <Dropdown className="ms-lg-auto">
                   <Dropdown.Toggle variant="" id="dropdown-basic">
-                    { user }
+                    Account
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
@@ -70,7 +75,7 @@ const Header = () => {
                     </Dropdown.Item>
                     <hr />
                     <Dropdown.Item key={2}>
-                      <Link to="/login" className="nav-link" onClick={logOut}>
+                      <Link to="/" className="nav-link" onClick={logOut}>
                         Logout
                       </Link>
                     </Dropdown.Item>
