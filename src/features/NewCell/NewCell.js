@@ -1,43 +1,43 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
+import UserService from '../../services/user.service';
 import CharacterCount from '../CharacterCount/CharacterCount';
 
-const NewWord = (props) => {
-  const { addNewWord, list } = props;
+const NewCell = () => {
   const navigate = useNavigate();
-  const [state, setWord] = useState({
-    id: '',
-    word: '',
-    story: '',
-  });
+  const [cell, setCell] = useState('');
 
-  const validateWord = (obj) => {
-    if (obj.word) {
-      addNewWord(state);
+  const handleCreate = (cell) => {
+    if (cell.title) {
+      UserService.createCell(cell).then(
+        () => {},
+        (error) => {
+          const noCells = (error.response && error.response.data)
+            || error.message
+            || error.toString();
+
+          setCell(noCells);
+        },
+      );
     }
   };
 
   const handleChange = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
 
-    setWord({
-      ...state,
-      id: list.length + 1,
+    setCell({
+      ...cell,
       [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (state.story.length <= 300) {
-      validateWord(state);
-      setWord({ word: '', story: '' });
-    }
+    handleCreate(cell);
+    setCell('');
   };
 
   return (
@@ -51,7 +51,7 @@ const NewWord = (props) => {
           <Form.Control
             type="text"
             name="word"
-            value={state.word}
+            value={cell.title}
             size="lg"
             placeholder="Add new word"
             onChange={handleChange}
@@ -59,16 +59,16 @@ const NewWord = (props) => {
           <Form.Control
             as="textarea"
             name="story"
-            value={state.story}
+            value={cell.description}
             placeholder="Add story here"
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          <CharacterCount cell={state} />
+          <CharacterCount cell={cell} />
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
-          <Button variant="secondary" onClick={() => navigate('/')}>
+          <Button variant="secondary" onClick={() => navigate('/cells')}>
             Done
           </Button>
         </Stack>
@@ -77,9 +77,4 @@ const NewWord = (props) => {
   );
 };
 
-NewWord.propTypes = {
-  list: PropTypes.isRequired,
-  addNewWord: PropTypes.func.isRequired,
-};
-
-export default NewWord;
+export default NewCell;
