@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PencilSquare } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import CreateButton from '../CreateButton/CreateButton';
-import UserService from '../../services/user.service';
+// import UserService from '../../services/user.service';
 import './Cells.css';
 
 const Cells = () => {
-  const [cells, setCells] = useState('');
+  const [cells] = useState([
+    { id: '1', title: 'title 1', description: 'sample desc' },
+  ]);
 
-  useEffect(() => {
-    UserService.getCells().then(
-      (response) => {
-        setCells(response.data);
-      },
-      (error) => {
-        const noCells = (error.response && error.response.data)
-          || error.message
-          || error.toString();
+  // useEffect(() => {
+  //   UserService.getCells().then(
+  //     (response) => {
+  //       setCells(response);
+  //     },
+  //     (error) => {
+  //       const noCells = (error.response && error.response.data)
+  //         || error.message
+  //         || error.toString();
 
-        setCells(noCells);
-      },
-    );
-  }, []);
+  //       setCells(noCells);
+  //     },
+  //   );
+  // }, []);
 
   const navigate = useNavigate();
 

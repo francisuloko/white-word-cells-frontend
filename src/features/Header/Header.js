@@ -10,7 +10,7 @@ import EventBus from '../../common/EventBus';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logOut = useCallback(() => {
@@ -25,7 +25,7 @@ const Header = () => {
     return () => {
       EventBus.remove('logout');
     };
-  }, [currentUser, logOut]);
+  }, [user, logOut]);
 
   return (
     <header className="fixed-top w-100 border border-bottom">
@@ -41,7 +41,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto d-flex align-items-center col-lg-12">
-              {currentUser ? (
+              {user ? (
                 <Link to="/home" className="btn fs-6">
                   Home
                 </Link>
@@ -56,10 +56,10 @@ const Header = () => {
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
-              {currentUser ? (
+              {user ? (
                 <Dropdown className="ms-lg-auto">
                   <Dropdown.Toggle variant="" id="dropdown-basic">
-                    {currentUser.name}
+                    { user }
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>

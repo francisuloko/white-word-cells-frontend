@@ -40,7 +40,7 @@ const Login = () => {
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
-        // history.push('/profile');
+      // history.push('/profile');
         window.location.reload();
       })
       .catch(() => {
@@ -49,7 +49,7 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -67,7 +67,12 @@ const Login = () => {
         >
           <Form>
             <div className="form-group">
-              <Field name="email" type="text" className="form-control" placeholder="Email" />
+              <Field
+                name="email"
+                type="text"
+                className="form-control"
+                placeholder="Email"
+              />
               <ErrorMessage
                 name="email"
                 component="div"
@@ -76,7 +81,12 @@ const Login = () => {
             </div>
 
             <div className="form-group">
-              <Field name="password" type="password" className="form-control" placeholder="Password" />
+              <Field
+                name="password"
+                type="password"
+                className="form-control"
+                placeholder="Password"
+              />
               <ErrorMessage
                 name="password"
                 component="div"
