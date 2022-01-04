@@ -36,11 +36,11 @@ const NewCell = () => {
   });
 
   const handleLogin = (formValue) => {
-    const { title, description } = formValue;
-    console.log(title, description);
+    // const { title, description } = formValue;
+    const [cell] = useState(formValue);
     setLoading(true);
 
-    dispatch(createCell({ title, description }))
+    dispatch(createCell(cell))
       .unwrap()
       .then(() => {
         navigate('/new');

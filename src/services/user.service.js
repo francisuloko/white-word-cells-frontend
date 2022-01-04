@@ -7,7 +7,13 @@ const getCells = () => axios
   .get(`${API_URL}cells`, { headers: authorization })
   .then((response) => response);
 
-const deleteCell = (cell) => axios.delete(`${API_URL}cells/${cell.id}`, { headers: authorization });
+const deleteCell = (cell) => {
+  axios({
+    method: 'delete',
+    url: `${API_URL}cells/${cell.id}`,
+    headers: authorization,
+  });
+};
 
 const editCell = (cell) => {
   axios({
