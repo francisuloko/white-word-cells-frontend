@@ -69,8 +69,8 @@ const Header = () => {
 
                   <Dropdown.Menu>
                     <Dropdown.Item key={1}>
-                      <Link to="/profile" className="nav-link">
-                        Profile
+                      <Link to="/settings" className="nav-link">
+                        Settings
                       </Link>
                     </Dropdown.Item>
                     <hr />
