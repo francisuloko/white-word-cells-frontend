@@ -1,33 +1,23 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
-import CharacterCount from '../CharacterCount/CharacterCount';
+// import CharacterCount from '../CharacterCount/CharacterCount';
 import UserService from '../../services/user.service';
 
 const EditCell = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [cell, setCell] = useState(state);
+  const { cells } = useSelector((state) => state.cells);
+  const [cellsCopy, setCellsCopy] = useState(cells);
 
   const handleEdit = (cell) => {
     if (cell.title) {
-      UserService.editCell(cell).then(
-        () => {
-
-        },
-        (error) => {
-          const noCells = (error.response && error.response.data)
-            || error.message
-            || error.toString();
-
-          setCell(noCells);
-        },
-      );
+      UserService.editCell(cell);
     }
-
-    return "title can't be blank";
   };
 
   const handleChange = (e) => {
@@ -42,21 +32,16 @@ const EditCell = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEdit(cell);
+    const updateCells = cellsCopy.map((item) => (item.id === cell.id ? cell : item));
+    setCellsCopy(updateCells);
     navigate('/cells');
   };
 
   const handleDelete = (cell) => {
-    UserService.deleteCell(cell).then(
-      (response) => response.data,
-      (error) => {
-        const noCells = (error.response && error.response.data)
-          || error.message
-          || error.toString();
-
-        return noCells;
-      },
-    );
-    navigate('/cell');
+    UserService.deleteCell(cell);
+    const updateCells = cellsCopy.filter((item) => item.id === cell.id);
+    setCellsCopy(updateCells);
+    navigate('/cells');
   };
 
   return (
@@ -69,19 +54,19 @@ const EditCell = () => {
           <h2 className="text-center">Edit Word</h2>
           <Form.Control
             type="text"
-            name="word"
+            name="title"
             value={cell.title}
             onChange={handleChange}
             size="lg"
           />
           <Form.Control
             as="textarea"
-            name="story"
+            name="description"
             value={cell.description}
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          <CharacterCount cell={cell} />
+          {/* <CharacterCount cell={cell} /> */}
           <Button variant="primary" onClick={handleSubmit}>
             Done
           </Button>
@@ -89,7 +74,7 @@ const EditCell = () => {
             type="submit"
             variant="secondary"
             value="Submit"
-            onClick={() => handleDelete(cell.id)}
+            onClick={() => handleDelete(cell)}
           >
             Delete
           </Button>

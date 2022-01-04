@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,7 +18,7 @@ const CharacterCount = (props) => {
 };
 
 CharacterCount.propTypes = {
-  cell: PropTypes.string.isRequired,
+  cell: PropTypes.isRequired,
 };
 
 export default CharacterCount;

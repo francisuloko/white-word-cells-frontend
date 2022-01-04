@@ -6,10 +6,10 @@ import {
 } from 'formik';
 import * as Yup from 'yup';
 
-import { login } from '../slices/auth';
-import { clearMessage } from '../slices/message';
+import { createCell } from '../../slices/cells';
+import { clearMessage } from '../../slices/message';
 
-const Login = () => {
+const NewCell = () => {
   const [loading, setLoading] = useState(false);
   const { message } = useSelector((state) => state.message);
 
@@ -21,23 +21,29 @@ const Login = () => {
   }, [dispatch]);
 
   const initialValues = {
-    email: '',
-    password: '',
+    title: '',
+    description: '',
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup.string().required('This field is required!'),
-    password: Yup.string().required('This field is required!'),
+    title: Yup.string().required('This field is required!'),
+    description: Yup.string().required('This field is required!'),
+    // description: Yup.string().test(
+    //   'len',
+    //   'Must be less than 300 characters',
+    //   (val) => val.length <= 300,
+    // ),
   });
 
   const handleLogin = (formValue) => {
-    const { email, password } = formValue;
+    // const { title, description } = formValue;
+    const [cell] = useState(formValue);
     setLoading(true);
 
-    dispatch(login({ email, password }))
+    dispatch(createCell(cell))
       .unwrap()
       .then(() => {
-        navigate('/cells');
+        navigate('/new');
       })
       .catch(() => {
         setLoading(false);
@@ -60,13 +66,13 @@ const Login = () => {
           <Form>
             <div className="form-group">
               <Field
-                name="email"
+                name="title"
                 type="text"
                 className="form-control"
-                placeholder="Email"
+                placeholder="Word"
               />
               <ErrorMessage
-                name="email"
+                name="title"
                 component="div"
                 className="alert alert-danger"
               />
@@ -74,13 +80,13 @@ const Login = () => {
 
             <div className="form-group">
               <Field
-                name="password"
-                type="password"
+                name="description"
+                type="text"
                 className="form-control"
-                placeholder="Password"
+                placeholder="Description"
               />
               <ErrorMessage
-                name="password"
+                name="description"
                 component="div"
                 className="alert alert-danger"
               />
@@ -95,7 +101,7 @@ const Login = () => {
                 {loading && (
                   <span className="spinner-border spinner-border-sm" />
                 )}
-                <span>Login</span>
+                <span>Add</span>
               </button>
             </div>
           </Form>
@@ -113,4 +119,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default NewCell;
