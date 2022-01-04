@@ -1,17 +1,11 @@
-header {
-  width: 100%;
-  z-index: 1;
-}
-
 .module {
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(https://source.unsplash.com/800x450/) no-repeat center center fixed;
+    url(https://source.unsplash.com/800x650/) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100vh;
 }
 
 .mid .carousel-caption {
@@ -32,6 +26,6 @@ header {
   align-items: center;
 }
 
-.cursor {
-  cursor: pointer;
+.carousel-inner {
+  height: 100%;
 }

@@ -14,10 +14,10 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App d-flex flex-column vh-100">
       <Router history={history}>
         <Header />
-        <div>
+        <div className="flex-grow-1">
           <Routes>
             <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Register />} />
