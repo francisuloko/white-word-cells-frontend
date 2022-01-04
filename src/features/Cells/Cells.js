@@ -21,7 +21,7 @@ const Cells = () => {
   };
 
   const cellsCollection = cells.map((cell) => (
-    <Carousel.Item key={cell.id} className="">
+    <Carousel.Item key={cell.id} className="h-100">
       <Carousel.Caption className="py-0">
         <button
           type="button"
