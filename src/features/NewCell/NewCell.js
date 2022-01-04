@@ -4,24 +4,15 @@ import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
 import UserService from '../../services/user.service';
-import CharacterCount from '../CharacterCount/CharacterCount';
+// import CharacterCount from '../CharacterCount/CharacterCount';
 
 const NewCell = () => {
   const navigate = useNavigate();
-  const [cell, setCell] = useState('');
+  const [cell, setCell] = useState({ title: '', description: '' });
 
   const handleCreate = (cell) => {
     if (cell.title) {
-      UserService.createCell(cell).then(
-        () => {},
-        (error) => {
-          const noCells = (error.response && error.response.data)
-            || error.message
-            || error.toString();
-
-          setCell(noCells);
-        },
-      );
+      UserService.createCell(cell);
     }
   };
 
@@ -37,7 +28,7 @@ const NewCell = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleCreate(cell);
-    setCell('');
+    setCell({ title: '', description: '' });
   };
 
   return (
@@ -47,10 +38,10 @@ const NewCell = () => {
           gap={2}
           className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow"
         >
-          <h2>Add New Word</h2>
+          <h2>Add a new word</h2>
           <Form.Control
             type="text"
-            name="word"
+            name="title"
             value={cell.title}
             size="lg"
             placeholder="Add new word"
@@ -58,13 +49,13 @@ const NewCell = () => {
           />
           <Form.Control
             as="textarea"
-            name="story"
+            name="description"
             value={cell.description}
             placeholder="Add story here"
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          <CharacterCount cell={cell} />
+          {/* <CharacterCount cell={cell} /> */}
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>

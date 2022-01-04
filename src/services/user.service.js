@@ -3,7 +3,6 @@ import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:3001/';
 const authorization = authHeader();
-
 const getCells = () => axios
   .get(`${API_URL}cells`, { headers: authorization })
   .then((response) => response);
@@ -11,26 +10,20 @@ const getCells = () => axios
 const deleteCell = (cell) => axios.delete(`${API_URL}cells/${cell.id}`, { headers: authorization });
 
 const editCell = (cell) => {
-  axios.put({
+  axios({
+    method: 'put',
     url: `${API_URL}cells/${cell.id}`,
-    body: cell,
-    headers: {
-      authorization,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
+    data: cell,
+    headers: authorization,
   });
 };
 
 const createCell = (cell) => {
-  axios.post({
+  axios({
     url: `${API_URL}cells`,
-    body: cell,
-    headers: {
-      authorization,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
+    method: 'post',
+    data: cell,
+    headers: authorization,
   });
 };
 
