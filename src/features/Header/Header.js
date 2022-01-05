@@ -33,7 +33,7 @@ const Header = () => {
   );
 
   return (
-    <header className="fixed-top w-100 border border-bottom">
+    <header className="w-100 border border-bottom">
       <Navbar bg="white" variant="light" expand="lg">
         <Container>
           <Navbar.Brand
@@ -68,17 +68,13 @@ const Header = () => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item key={1}>
-                      <Link to="/profile" className="nav-link">
-                        Profile
-                      </Link>
-                    </Dropdown.Item>
+                    <Link to="/settings" className="nav-link">
+                      Settings
+                    </Link>
                     <hr />
-                    <Dropdown.Item key={2}>
-                      <Link to="/" className="nav-link" onClick={logOut}>
-                        Logout
-                      </Link>
-                    </Dropdown.Item>
+                    <Link to="/" className="nav-link" onClick={logOut}>
+                      Logout
+                    </Link>
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (

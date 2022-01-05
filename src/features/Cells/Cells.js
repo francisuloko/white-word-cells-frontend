@@ -14,14 +14,14 @@ const Cells = () => {
 
   useEffect(() => {
     dispatch(getCells());
-  }, [dispatch, cells]);
+  }, [dispatch]);
 
   const handleEdit = (cell) => {
     navigate('/edit', { state: cell });
   };
 
   const cellsCollection = cells.map((cell) => (
-    <Carousel.Item key={cell.id} className="module mid">
+    <Carousel.Item key={cell.id} className="h-100">
       <Carousel.Caption className="py-0">
         <button
           type="button"
@@ -37,12 +37,12 @@ const Cells = () => {
   ));
 
   return (
-    <>
+    <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel interval={5000}>{cellsCollection}</Carousel>
+        <Carousel interval={5000} className="h-100">{cellsCollection}</Carousel>
       ) : (
-        <Carousel>
-          <Carousel.Item className="module mid">
+        <Carousel className="h-100">
+          <Carousel.Item className="h-100">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">
                 Add a new Cell.
@@ -52,7 +52,7 @@ const Cells = () => {
         </Carousel>
       )}
       <CreateButton />
-    </>
+    </div>
   );
 };
 
