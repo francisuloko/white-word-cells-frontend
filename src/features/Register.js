@@ -1,10 +1,13 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
+import {
+  Container, Stack,
+} from 'react-bootstrap';
 import * as Yup from 'yup';
 
 import { register } from '../slices/auth';
@@ -68,26 +71,26 @@ const Register = () => {
   };
 
   return (
-    <div className="col-md-12 signup-form">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleRegister}
+    <>
+      <Container>
+        <Stack
+          gap={2}
+          className="col col-md-4 p-4 mx-auto mt-5 border border-1 rounded shadow text-center"
         >
-          <Form>
-            {!successful && (
+          <h2>Sign up</h2>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleRegister}
+          >
+            <Form>
+              {!successful && (
               <div>
                 <div className="form-group">
                   <Field
                     name="name"
                     type="text"
-                    className="form-control"
+                    className="form-control my-2"
                     placeholder="Name"
                   />
                   <ErrorMessage
@@ -101,7 +104,7 @@ const Register = () => {
                   <Field
                     name="email"
                     type="email"
-                    className="form-control"
+                    className="form-control my-2"
                     placeholder="Email"
                   />
                   <ErrorMessage
@@ -115,7 +118,7 @@ const Register = () => {
                   <Field
                     name="password"
                     type="password"
-                    className="form-control"
+                    className="form-control my-2"
                     placeholder="Password"
                   />
                   <ErrorMessage
@@ -129,7 +132,7 @@ const Register = () => {
                   <Field
                     name="password_confirmation"
                     type="password"
-                    className="form-control"
+                    className="form-control my-2"
                     placeholder="Confirm Password"
                   />
                   <ErrorMessage
@@ -139,30 +142,32 @@ const Register = () => {
                   />
                 </div>
 
-                <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block">
+                <div className="form-group mb-3">
+                  <button type="submit" className="btn btn-primary btn-block form-control">
                     Sign Up
                   </button>
                 </div>
               </div>
-            )}
-          </Form>
-        </Formik>
-      </div>
+              )}
+              <Link to="/login">Sign in</Link>
+            </Form>
+          </Formik>
 
-      {message && (
-        <div className="form-group">
-          <div
-            className={
+          {message && (
+          <div className="form-group">
+            <div
+              className={
               successful ? 'alert alert-success' : 'alert alert-danger'
             }
-            role="alert"
-          >
-            {message}
+              role="alert"
+            >
+              {message}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+          )}
+        </Stack>
+      </Container>
+    </>
   );
 };
 
