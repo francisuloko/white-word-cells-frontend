@@ -68,17 +68,13 @@ const Header = () => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item key={1}>
-                      <Link to="/settings" className="nav-link">
-                        Settings
-                      </Link>
-                    </Dropdown.Item>
+                    <Link to="/settings" className="nav-link">
+                      Settings
+                    </Link>
                     <hr />
-                    <Dropdown.Item key={2}>
-                      <Link to="/" className="nav-link" onClick={logOut}>
-                        Logout
-                      </Link>
-                    </Dropdown.Item>
+                    <Link to="/" className="nav-link" onClick={logOut}>
+                      Logout
+                    </Link>
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (
