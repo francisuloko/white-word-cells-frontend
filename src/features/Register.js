@@ -128,20 +128,6 @@ const Register = () => {
                   />
                 </div>
 
-                <div className="form-group">
-                  <Field
-                    name="password_confirmation"
-                    type="password"
-                    className="form-control my-2"
-                    placeholder="Confirm Password"
-                  />
-                  <ErrorMessage
-                    name="password_confirmation"
-                    component="div"
-                    className="alert alert-danger"
-                  />
-                </div>
-
                 <div className="form-group mb-3">
                   <button type="submit" className="btn btn-primary btn-block form-control">
                     Sign Up

@@ -4,11 +4,7 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:3001/';
 const authorization = authHeader();
 
-const getCells = () => axios({
-  method: 'get',
-  url: `${API_URL}cells`,
-  headers: authorization,
-});
+const getCells = () => axios.get(`${API_URL}cells`, { headers: authorization });
 
 const deleteCell = (cell) => {
   axios({
