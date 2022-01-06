@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
@@ -11,14 +10,6 @@ const EditCell = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [cell, setCell] = useState(state);
-  const { cells } = useSelector((state) => state.cells);
-  const [cellsCopy, setCellsCopy] = useState(cells);
-
-  const handleEdit = (cell) => {
-    if (cell.title) {
-      UserService.editCell(cell);
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,16 +22,14 @@ const EditCell = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleEdit(cell);
-    const updateCells = cellsCopy.map((item) => (item.id === cell.id ? cell : item));
-    setCellsCopy(updateCells);
+    if (cell.title) {
+      UserService.editCell(cell);
+    }
     navigate('/cells');
   };
 
   const handleDelete = (cell) => {
     UserService.deleteCell(cell);
-    const updateCells = cellsCopy.filter((item) => item.id === cell.id);
-    setCellsCopy(updateCells);
     navigate('/cells');
   };
 
