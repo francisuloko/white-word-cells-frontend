@@ -16,7 +16,7 @@ export const getCells = createAsyncThunk('cells/all', async (thunkAPI) => {
   }
 });
 
-export const createCell = createAsyncThunk('cells/create', async ({ cell }, thunkAPI) => {
+export const createCell = createAsyncThunk('cells/create', async (cell, thunkAPI) => {
   try {
     const response = await UserService.createCell(cell);
     return response.data;
@@ -44,12 +44,9 @@ const cellSlice = createSlice({
     [getCells.rejected]: (state) => {
       state.cells = [];
     },
-    // [createCell.fulfilled]: (state, action) => {
-    //   state.cell = action.payload;
-    // },
-    // [createCell.rejected]: (state) => {
-    //   state.cell = {};
-    // },
+    [createCell.fulfilled]: (state, action) => {
+      state.cells = [...state, action.payload];
+    },
   },
 });
 

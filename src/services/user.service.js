@@ -2,20 +2,11 @@ import axios from 'axios';
 import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:3001/';
-const authorization = authHeader();
 
-const getCells = () => axios({
-  method: 'get',
-  url: `${API_URL}cells`,
-  headers: authorization,
-});
+const getCells = () => axios.get(`${API_URL}cells`, { headers: authHeader() });
 
 const deleteCell = (cell) => {
-  axios({
-    method: 'delete',
-    url: `${API_URL}cells/${cell.id}`,
-    headers: authorization,
-  });
+  axios.delete(`${API_URL}cells/${cell.id}`, { headers: authHeader() });
 };
 
 const editCell = (cell) => {
@@ -23,7 +14,7 @@ const editCell = (cell) => {
     method: 'put',
     url: `${API_URL}cells/${cell.id}`,
     data: cell,
-    headers: authorization,
+    headers: authHeader(),
   });
 };
 
@@ -32,7 +23,7 @@ const createCell = (cell) => {
     url: `${API_URL}cells`,
     method: 'post',
     data: cell,
-    headers: authorization,
+    headers: authHeader(),
   });
 };
 
