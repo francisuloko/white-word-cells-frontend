@@ -20,12 +20,11 @@ const EditCell = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (cell.title) {
       UserService.editCell(cell);
+      navigate('/cells');
     }
-    navigate('/cells');
   };
 
   const handleDelete = (cell) => {
@@ -35,10 +34,10 @@ const EditCell = () => {
 
   return (
     <>
-      <Container className="pt-5">
+      <Container>
         <Stack
           gap={2}
-          className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow"
+          className="col-md-5 p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow"
         >
           <h2 className="text-center">Edit Word</h2>
           <Form.Control
@@ -56,7 +55,7 @@ const EditCell = () => {
             style={{ height: '200px' }}
           />
           {/* <CharacterCount cell={cell} /> */}
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={() => handleSubmit()}>
             Done
           </Button>
           <Button

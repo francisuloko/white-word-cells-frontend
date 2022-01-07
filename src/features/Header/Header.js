@@ -45,15 +45,13 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto d-flex align-items-center col-lg-12">
+            <Nav className="d-flex justify-content-end align-items-center col-lg-12">
               { isLoggedIn ? (
                 <Link to="/cells" className="btn fs-6">
                   Home
                 </Link>
               ) : (
-                <Link to="/" className="btn fs-6">
-                  Welcome
-                </Link>
+                null
               )}
               <Link to="/about" className="btn fs-6">
                 How it works
@@ -62,7 +60,7 @@ const Header = () => {
                 About
               </Link>
               { isLoggedIn ? (
-                <Dropdown className="ms-lg-auto">
+                <Dropdown>
                   <Dropdown.Toggle variant="" id="dropdown-basic">
                     Account
                   </Dropdown.Toggle>
@@ -78,14 +76,7 @@ const Header = () => {
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (
-                <div className="ms-lg-auto">
-                  <Link to="/login" className="btn fs-6">
-                    Login
-                  </Link>
-                  <Link to="/signup" className="btn fs-6">
-                    Sign Up
-                  </Link>
-                </div>
+                null
               )}
             </Nav>
           </Navbar.Collapse>

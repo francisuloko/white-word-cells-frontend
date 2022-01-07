@@ -8,7 +8,7 @@ import About from './features/About/About';
 import Login from './features/Login';
 import Register from './features/Register';
 import history from './helpers/history';
-import LandingPage from './features/LandingPage';
+// import LandingPage from './features/LandingPage';
 
 import './App.css';
 
@@ -19,13 +19,13 @@ function App() {
         <Header />
         <div className="flex-grow-1">
           <Routes>
-            <Route path="/login" exact element={<Login />} />
+            <Route path="/" exact element={<Login />} />
             <Route path="/signup" exact element={<Register />} />
             <Route exact path="/new" element={<NewCell />} />
             <Route exact path="/edit" element={<EditCell />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/cells" element={<Cells />} />
-            <Route path="/" exact element={<LandingPage />} />
+            {/* <Route path="/" exact element={<LandingPage />} /> */}
           </Routes>
         </div>
       </Router>

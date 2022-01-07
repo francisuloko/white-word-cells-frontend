@@ -135,7 +135,7 @@ const Register = () => {
                 </div>
               </div>
               )}
-              <Link to="/login">Sign in</Link>
+              <Link to="/">Sign in</Link>
             </Form>
           </Formik>
 
