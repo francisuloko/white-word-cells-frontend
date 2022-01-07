@@ -1,16 +1,7 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/';
-
-// const login = (email, password) => axios
-//   .post(`${API_URL}authenticate`,
-//     { email, password }).then((response) => {
-//     if (response.data.auth_token) {
-//       localStorage.setItem('user', JSON.stringify(response.data));
-//     }
-//     return response.data.name;
-//   });
+const API_URL = 'http://localhost:3001/api/v1/';
 
 const login = (email, password) => axios({
   method: 'post',
@@ -22,14 +13,6 @@ const login = (email, password) => axios({
   }
   return response.data.name;
 });
-
-// const register = (name, email, password) => {
-//   axios.post(`${API_URL}signup`, {
-//     name,
-//     email,
-//     password,
-//   });
-// };
 
 const register = (name, email, password) => {
   axios({

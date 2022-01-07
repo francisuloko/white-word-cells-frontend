@@ -7,7 +7,6 @@ import Header from './features/Header/Header';
 import About from './features/About/About';
 import Login from './features/Login';
 import Register from './features/Register';
-import history from './helpers/history';
 // import LandingPage from './features/LandingPage';
 
 import './App.css';
@@ -15,7 +14,7 @@ import './App.css';
 function App() {
   return (
     <div className="App d-flex flex-column vh-100">
-      <Router history={history}>
+      <Router>
         <Header />
         <div className="flex-grow-1">
           <Routes>

@@ -4,24 +4,17 @@ import { setMessage } from './message';
 
 import AuthService from '../services/auth.service';
 
-// const data = JSON.parse(localStorage.getItem('user'));
-let data = '';
+let data;
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({
-    name,
-    email,
-    password,
-  }, thunkAPI) => {
+  async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await AuthService.register(name, email, password);
       thunkAPI.dispatch(setMessage(response));
       return response;
     } catch (error) {
-      const message = (error.response
-          && error.response
-          && error.response.message)
+      const message = (error.response && error.response && error.response.message)
         || error.message
         || error.toString();
       thunkAPI.dispatch(setMessage(message));
