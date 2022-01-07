@@ -11,7 +11,7 @@ import EventBus from '../../common/EventBus';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logOut = useCallback(() => {
@@ -54,15 +54,15 @@ const Header = () => {
                 null
               )}
               <Link to="/about" className="btn fs-6">
-                How it works
+                About
               </Link>
               <Link to="/about" className="btn fs-6">
-                About
+                How it works
               </Link>
               { isLoggedIn ? (
                 <Dropdown>
                   <Dropdown.Toggle variant="" id="dropdown-basic">
-                    Account
+                    { user }
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>

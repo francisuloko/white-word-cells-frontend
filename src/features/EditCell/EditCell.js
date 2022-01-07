@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
+import Cells from '../Cells/Cells';
 // import CharacterCount from '../CharacterCount/CharacterCount';
 import UserService from '../../services/user.service';
 
@@ -29,7 +30,7 @@ const EditCell = () => {
 
   const handleDelete = (cell) => {
     UserService.deleteCell(cell);
-    navigate('/cells');
+    navigate(<Cells />);
   };
 
   return (
