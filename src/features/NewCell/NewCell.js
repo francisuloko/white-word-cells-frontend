@@ -33,10 +33,10 @@ const NewCell = () => {
 
   return (
     <>
-      <Container className="pt-5">
+      <Container>
         <Stack
           gap={2}
-          className="col-md-6 p-4 mx-auto mt-5 border border-1 rounded shadow"
+          className="col-md-5 p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow"
         >
           <h2>Add a new word</h2>
           <Form.Control

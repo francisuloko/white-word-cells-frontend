@@ -52,7 +52,7 @@ const Login = () => {
       <Container>
         <Stack
           gap={2}
-          className="col col-md-4 p-4 mx-auto mt-5 border border-1 rounded shadow text-center"
+          className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 border border-1 rounded shadow text-center"
         >
           <h2>Sign in</h2>
           <Formik
