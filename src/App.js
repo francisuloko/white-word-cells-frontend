@@ -4,6 +4,7 @@ import Cells from './features/Cells/Cells';
 import NewCell from './features/NewCell/NewCell';
 import EditCell from './features/EditCell/EditCell';
 import Header from './features/Header/Header';
+import Instructions from './features/HowItWorks';
 import About from './features/About/About';
 import Login from './features/Login';
 import Register from './features/Register';
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/edit" element={<EditCell />} />
             <Route exact path="/about" element={<About />} />
             <Route exact path="/cells" element={<Cells />} />
+            <Route exact path="/how-it-works" element={<Instructions />} />
             {/* <Route path="/" exact element={<LandingPage />} /> */}
           </Routes>
         </div>

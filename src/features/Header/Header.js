@@ -56,7 +56,7 @@ const Header = () => {
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
-              <Link to="/about" className="btn fs-6">
+              <Link to="/how-it-works" className="btn fs-6">
                 How it works
               </Link>
               { isLoggedIn ? (
