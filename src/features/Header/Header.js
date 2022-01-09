@@ -53,11 +53,11 @@ const Header = () => {
               ) : (
                 null
               )}
-              <Link to="/about" className="btn fs-6">
-                About
-              </Link>
               <Link to="/how-it-works" className="btn fs-6">
                 How it works
+              </Link>
+              <Link to="/about" className="btn fs-6">
+                About
               </Link>
               { isLoggedIn ? (
                 <Dropdown>
