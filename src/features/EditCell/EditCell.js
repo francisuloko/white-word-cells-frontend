@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
-import Cells from '../Cells/Cells';
-// import CharacterCount from '../CharacterCount/CharacterCount';
+import { Trash } from 'react-bootstrap-icons';
+import CharacterCount from '../CharacterCount/CharacterCount';
 import UserService from '../../services/user.service';
 
 const EditCell = () => {
@@ -30,7 +30,7 @@ const EditCell = () => {
 
   const handleDelete = (cell) => {
     UserService.deleteCell(cell);
-    navigate(<Cells />);
+    navigate('/cells');
   };
 
   return (
@@ -38,16 +38,23 @@ const EditCell = () => {
       <Container>
         <Stack
           gap={2}
-          className="col-md-5 p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow"
+          className="col-md-6 col-lg-4 p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow position-relative"
         >
           <h2 className="text-center">Edit Word</h2>
-          <Form.Control
-            type="text"
-            name="title"
-            value={cell.title}
-            onChange={handleChange}
-            size="lg"
-          />
+          <div className="d-flex align-items-center">
+            <Form.Control
+              type="text"
+              name="title"
+              value={cell.title}
+              onChange={handleChange}
+              size="lg"
+            />
+            <Trash
+              className="fs-3 mx-2"
+              onClick={() => handleDelete(cell)}
+            />
+          </div>
+          <CharacterCount desc={cell.description} />
           <Form.Control
             as="textarea"
             name="description"
@@ -55,17 +62,8 @@ const EditCell = () => {
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          {/* <CharacterCount cell={cell} /> */}
           <Button variant="primary" onClick={() => handleSubmit()}>
             Done
-          </Button>
-          <Button
-            type="submit"
-            variant="secondary"
-            value="Submit"
-            onClick={() => handleDelete(cell)}
-          >
-            Delete
           </Button>
         </Stack>
       </Container>
