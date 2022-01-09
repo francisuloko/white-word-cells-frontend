@@ -4,7 +4,7 @@ import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
 import UserService from '../../services/user.service';
-// import CharacterCount from '../CharacterCount/CharacterCount';
+import CharacterCount from '../CharacterCount/CharacterCount';
 
 const NewCell = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const NewCell = () => {
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          {/* <CharacterCount cell={cell} /> */}
+          <CharacterCount desc={cell.description} />
           <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>

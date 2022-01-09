@@ -3,22 +3,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CharacterCount = (props) => {
-  const { cell } = props;
-  const charLen = 300 - cell.description.length;
+  const { desc } = props;
+  const charLen = 300 - desc.length;
 
   return (
-    <div className="ms-auto px-3">
+    <div className="px-3">
       {charLen < 0 ? (
         <span className="text-danger">{charLen}</span>
       ) : (
-        <>{charLen}</>
+        <span className="text-secondary">{charLen}</span>
       )}
     </div>
   );
 };
 
 CharacterCount.propTypes = {
-  cell: PropTypes.isRequired,
+  desc: PropTypes.string.isRequired,
 };
 
 export default CharacterCount;
