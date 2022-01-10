@@ -1,27 +1,9 @@
 /* eslint no-param-reassign: "error" */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
-
 import AuthService from '../services/auth.service';
 
 let data;
-
-export const register = createAsyncThunk(
-  'auth/register',
-  async ({ name, email, password }, thunkAPI) => {
-    try {
-      const response = await AuthService.register(name, email, password);
-      thunkAPI.dispatch(setMessage(response));
-      return response;
-    } catch (error) {
-      const message = (error.response && error.response && error.response.message)
-        || error.message
-        || error.toString();
-      thunkAPI.dispatch(setMessage(message));
-      return thunkAPI.rejectWithValue();
-    }
-  },
-);
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -41,9 +23,28 @@ export const login = createAsyncThunk(
   },
 );
 
+export const register = createAsyncThunk(
+  'auth/register',
+  async ({ name, email, password }, thunkAPI) => {
+    try {
+      const response = await AuthService.register(name, email, password);
+      thunkAPI.dispatch(setMessage(response));
+      return response;
+    } catch (error) {
+      const message = (error.response && error.response && error.response.message)
+        || error.message
+        || error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
 export const logout = createAsyncThunk('auth/logout', async () => {
   await AuthService.logout();
 });
+
+data ||= localStorage.getItem('user');
 
 const initialState = data
   ? { isLoggedIn: true, user: data.name }
@@ -53,8 +54,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled]: (state) => {
+    [register.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
+      state.user = action.payload;
     },
     [register.rejected]: (state) => {
       state.isLoggedIn = false;

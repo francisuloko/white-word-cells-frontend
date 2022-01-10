@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Formik, Field, Form, ErrorMessage,
 } from 'formik';
@@ -9,16 +9,14 @@ import {
   Container, Stack,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
-
 import { register } from '../slices/auth';
 import { clearMessage } from '../slices/message';
 
 const Register = () => {
   const [successful, setSuccessful] = useState(false);
-  const navigate = useNavigate();
-
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(clearMessage());
@@ -56,7 +54,6 @@ const Register = () => {
       name, email, password,
     } = formValue;
 
-    setSuccessful(false);
     dispatch(register({
       name, email, password,
     }))
@@ -84,7 +81,6 @@ const Register = () => {
             onSubmit={handleRegister}
           >
             <Form>
-              {!successful && (
               <div>
                 <div className="form-group">
                   <Field
@@ -134,8 +130,7 @@ const Register = () => {
                   </button>
                 </div>
               </div>
-              )}
-              <Link to="/">Sign in</Link>
+              <Link to="/login">Sign in</Link>
             </Form>
           </Formik>
 

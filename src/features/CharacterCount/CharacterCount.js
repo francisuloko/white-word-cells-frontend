@@ -7,7 +7,7 @@ const CharacterCount = (props) => {
   const charLen = 300 - desc.length;
 
   return (
-    <div className="px-3">
+    <div className="px-3 text-end">
       {charLen < 0 ? (
         <span className="text-danger">{charLen}</span>
       ) : (
