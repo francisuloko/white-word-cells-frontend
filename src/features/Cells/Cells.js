@@ -28,10 +28,10 @@ const Cells = () => {
           onClick={() => handleEdit(cell)}
           className="d-flex align-items-center border border-0 bg-transparent text-white"
         >
-          <span className="fs-1 py-3 m-0">{cell.title}</span>
+          <span className="fs-1 py-3 m-0 text-capitalize">{cell.title}</span>
           <PencilSquare className=" mx-3 fs-6" />
         </button>
-        <p className="px-3 col col-lg-8">{cell.description}</p>
+        <p className="px-3 col col-lg-6 font-weight-light">{cell.description}</p>
       </Carousel.Caption>
     </Carousel.Item>
   ));
@@ -39,7 +39,7 @@ const Cells = () => {
   return (
     <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel interval={6000} className="h-100">{cellsCollection}</Carousel>
+        <Carousel interval={9000} className="h-100">{cellsCollection}</Carousel>
       ) : (
         <Carousel className="h-100">
           <Carousel.Item className="h-100">
