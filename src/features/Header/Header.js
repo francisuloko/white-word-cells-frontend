@@ -62,7 +62,7 @@ const Header = () => {
                   <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
                     Me
                   </Dropdown.Toggle>
-                  <Dropdown.Menu align={{ lg: 'end' }}>
+                  <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
                     <Dropdown.Item to="/" onClick={logOut}>
                       Logout
                     </Dropdown.Item>

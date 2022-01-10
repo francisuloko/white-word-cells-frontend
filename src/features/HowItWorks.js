@@ -27,7 +27,7 @@ const Instructions = () => {
 
   return (
     <div className="module mid h-100">
-      <Carousel interval={7000} className="h-100">{instructionsCollection}</Carousel>
+      <Carousel pause={false} interval={7000} className="h-100">{instructionsCollection}</Carousel>
     </div>
   );
 };

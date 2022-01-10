@@ -39,7 +39,7 @@ const Cells = () => {
   return (
     <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel interval={9000} className="h-100">{cellsCollection}</Carousel>
+        <Carousel pause={false} interval={9000} className="h-100">{cellsCollection}</Carousel>
       ) : (
         <Carousel className="h-100">
           <Carousel.Item className="h-100">
