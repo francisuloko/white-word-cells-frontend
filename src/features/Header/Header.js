@@ -11,7 +11,7 @@ import EventBus from '../../common/EventBus';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logOut = useCallback(() => {
@@ -29,12 +29,12 @@ const Header = () => {
   }, [isLoggedIn, logOut]);
 
   const handleClick = () => (
-    isLoggedIn ? navigate('cells') : navigate('/')
+    isLoggedIn ? navigate('/cells') : navigate('/')
   );
 
   return (
-    <header className="w-100 border border-bottom">
-      <Navbar bg="white" variant="light" expand="lg">
+    <header className="w-100 p-0 border border-bottom">
+      <Navbar collapseOnSelect expand="lg" className="p-1" bg="white" variant="light">
         <Container>
           <Navbar.Brand
             className="d-flex align-items-center cursor"
@@ -43,40 +43,40 @@ const Header = () => {
             <img src={logo} alt="createIcon" style={{ width: '36px' }} />
             <span className="text-dark">White Word Cells</span>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="d-flex justify-content-end align-items-center col-lg-12">
-              { isLoggedIn ? (
+              {isLoggedIn ? (
                 <Link to="/cells" className="btn fs-6">
                   Home
                 </Link>
-              ) : (
-                null
-              )}
-              <Link to="/how-it-works" className="btn fs-6">
-                How it works
-              </Link>
+              ) : null}
               <Link to="/about" className="btn fs-6">
                 About
               </Link>
-              { isLoggedIn ? (
-                <Dropdown>
-                  <Dropdown.Toggle variant="" id="dropdown-basic">
-                    { user }
+              <Link to="/how-it-works" className="btn fs-6">
+                How it works
+              </Link>
+              {isLoggedIn ? (
+                <Dropdown drop="down" autoClose="true">
+                  <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
+                    Me
                   </Dropdown.Toggle>
-
-                  <Dropdown.Menu>
-                    <Link to="/settings" className="nav-link">
-                      Settings
-                    </Link>
-                    <hr />
-                    <Link to="/" className="nav-link" onClick={logOut}>
+                  <Dropdown.Menu align={{ lg: 'end' }}>
+                    <Dropdown.Item to="/" onClick={logOut}>
                       Logout
-                    </Link>
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               ) : (
-                null
+                <>
+                  <Link to="/login" className="btn fs-6">
+                    Sign In
+                  </Link>
+                  <Link to="/signup" className="btn fs-6">
+                    Sign Up
+                  </Link>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>
