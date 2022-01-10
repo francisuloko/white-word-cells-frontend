@@ -18,9 +18,9 @@ const Instructions = () => {
           type="button"
           className="d-flex align-items-center border border-0 bg-transparent text-white"
         >
-          <span className="fs-1 py-3 m-0">{instruction.title}</span>
+          <span className="fs-1 py-3 m-0 text-capitalize">{instruction.title}</span>
         </button>
-        <p className="px-3 col col-lg-5">{instruction.description}</p>
+        <p className="px-3 col col-lg-5 font-weight-normal">{instruction.description}</p>
       </Carousel.Caption>
     </Carousel.Item>
   ));
