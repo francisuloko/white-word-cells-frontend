@@ -36,9 +36,9 @@ const NewCell = () => {
       <Container>
         <Stack
           gap={2}
-          className="col-md-5 p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow"
+          className="col-md-5 col-lg-4 text-center p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow"
         >
-          <h2>Add a new word</h2>
+          <h2>Create word</h2>
           <Form.Control
             type="text"
             name="title"
@@ -57,7 +57,7 @@ const NewCell = () => {
           />
           <CharacterCount desc={cell.description} />
           <Button variant="primary" onClick={handleSubmit}>
-            Add
+            Save
           </Button>
           <Button variant="secondary" onClick={() => navigate('/cells')}>
             Done
