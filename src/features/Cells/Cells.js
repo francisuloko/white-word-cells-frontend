@@ -9,7 +9,6 @@ import './Cells.css';
 
 const Cells = () => {
   const { cells } = useSelector((state) => state.cells);
-  console.log(cells);
   const dispatch = useDispatch();
 
   useEffect(() => {
