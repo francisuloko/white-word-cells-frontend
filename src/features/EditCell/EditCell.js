@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import CharacterCount from '../CharacterCount/CharacterCount';
-import userService from '../../services/user.service';
+import { editCell, deleteCell } from '../../slices/cells';
 
 const EditCell = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const [cell, setCell] = useState(state);
+  const location = useLocation();
+  const { item } = location.state;
+  const [cell, setCell] = useState(item);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,15 +24,13 @@ const EditCell = () => {
     });
   };
 
-  const handleSubmit = () => {
-    if (cell.title) {
-      userService.editCell(cell);
-      navigate('/cells');
-    }
+  const handleSubmit = (cell) => {
+    dispatch(editCell(cell));
+    navigate('/cells');
   };
 
   const handleDelete = (cell) => {
-    userService.deleteCell(cell);
+    dispatch(deleteCell(cell));
     navigate('/cells');
   };
 
@@ -62,8 +63,8 @@ const EditCell = () => {
             onChange={handleChange}
             style={{ height: '200px' }}
           />
-          <Button variant="primary" onClick={() => handleSubmit()}>
-            Done
+          <Button variant="primary" onClick={() => handleSubmit(cell)}>
+            Save
           </Button>
         </Stack>
       </Container>
