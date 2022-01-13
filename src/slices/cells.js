@@ -29,6 +29,32 @@ export const createCell = createAsyncThunk('cells/create', async (cell, thunkAPI
   }
 });
 
+// export const editCell = createAsyncThunk('cells/create', async (id, thunkAPI) => {
+//   try {
+//     const response = await UserService.editCell(id);
+//     return response.data;
+//   } catch (error) {
+//     const message = (error.response && error.response.data && error.response.data.message)
+//       || error.message
+//       || error.toString();
+//     thunkAPI.dispatch(setMessage(message));
+//     return thunkAPI.rejectWithValue();
+//   }
+// });
+
+// export const deleteCell = createAsyncThunk('cells/create', async (cell, thunkAPI) => {
+//   try {
+//     const response = await UserService.editCell(cell);
+//     return response.data;
+//   } catch (error) {
+//     const message = (error.response && error.response.data && error.response.data.message)
+//       || error.message
+//       || error.toString();
+//     thunkAPI.dispatch(setMessage(message));
+//     return thunkAPI.rejectWithValue();
+//   }
+// });
+
 const initialState = {
   cells: [],
   cell: {},
@@ -47,6 +73,14 @@ const cellSlice = createSlice({
     [createCell.fulfilled]: (state, action) => {
       state.cells = [...state, action.payload];
     },
+    // [editCell.fulfilled]: (state, action) => {
+    //   const updatedCells = state.filter((cell) => cell.id !== action.payload.id);
+    //   state.cells = updatedCells;
+    // },
+    // [deleteCell.fulfilled]: (state, action) => {
+    //   const updatedCells = state.filter((cell) => cell.id !== action.payload);
+    //   state.cells = updatedCells;
+    // },
   },
 });
 

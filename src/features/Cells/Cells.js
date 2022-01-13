@@ -14,7 +14,7 @@ const Cells = () => {
 
   useEffect(() => {
     dispatch(getCells());
-  }, []);
+  }, [dispatch]);
 
   const handleEdit = (cell) => {
     navigate('/edit', { state: cell });

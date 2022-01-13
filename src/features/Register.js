@@ -74,7 +74,7 @@ const Register = () => {
           gap={2}
           className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 border border-1 rounded shadow text-center"
         >
-          <h2>Sign up</h2>
+          <h2>Create Account</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}

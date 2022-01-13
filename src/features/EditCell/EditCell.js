@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import CharacterCount from '../CharacterCount/CharacterCount';
-import UserService from '../../services/user.service';
+import userService from '../../services/user.service';
 
 const EditCell = () => {
   const navigate = useNavigate();
@@ -23,13 +23,13 @@ const EditCell = () => {
 
   const handleSubmit = () => {
     if (cell.title) {
-      UserService.editCell(cell);
+      userService.editCell(cell);
       navigate('/cells');
     }
   };
 
   const handleDelete = (cell) => {
-    UserService.deleteCell(cell);
+    userService.deleteCell(cell);
     navigate('/cells');
   };
 

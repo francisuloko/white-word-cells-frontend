@@ -10,10 +10,11 @@ const deleteCell = (cell) => {
 };
 
 const editCell = (cell) => {
+  const { id, title, description } = cell;
   axios({
     method: 'put',
-    url: `${API_URL}cells/${cell.id}`,
-    data: cell,
+    url: `${API_URL}cells/${id}`,
+    data: { title, description },
     headers: authHeader(),
   });
 };
