@@ -1,5 +1,5 @@
 /* eslint-disable no-unneeded-ternary */
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -10,12 +10,14 @@ import { logout } from '../../slices/auth';
 import EventBus from '../../common/EventBus';
 
 const Header = () => {
-  const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.auth);
+  const [expanded, setExpanded] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logOut = useCallback(() => {
     dispatch(logout());
+    setExpanded(false);
   }, [dispatch]);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const Header = () => {
 
   return (
     <header className="w-100 p-0 border border-bottom">
-      <Navbar collapseOnSelect expand="lg" className="p-1" bg="white" variant="light">
+      <Navbar expanded={expanded} expand="lg" className="p-1" bg="white" variant="light">
         <Container>
           <Navbar.Brand
             className="d-flex align-items-center cursor"
@@ -43,18 +45,18 @@ const Header = () => {
             <img src={logo} alt="createIcon" style={{ width: '36px' }} />
             <span className="text-dark">White Word Cells</span>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={() => setExpanded(expanded ? false : 'expanded')} />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="d-flex justify-content-end align-items-center col-lg-12">
               {isLoggedIn ? (
-                <Link to="/cells" className="btn fs-6">
+                <Link to="/cells" className="btn fs-6" onClick={() => setExpanded(false)}>
                   Home
                 </Link>
               ) : null}
-              <Link to="/about" className="btn fs-6">
+              <Link to="/about" className="btn fs-6" onClick={() => setExpanded(false)}>
                 About
               </Link>
-              <Link to="/how-it-works" className="btn fs-6">
+              <Link to="/how-it-works" className="btn fs-6" onClick={() => setExpanded(false)}>
                 How it works
               </Link>
               {isLoggedIn ? (
@@ -62,7 +64,7 @@ const Header = () => {
                   <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
                     Me
                   </Dropdown.Toggle>
-                  <Dropdown.Menu align={{ lg: 'end' }}>
+                  <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
                     <Dropdown.Item to="/" onClick={logOut}>
                       Logout
                     </Dropdown.Item>
@@ -70,10 +72,10 @@ const Header = () => {
                 </Dropdown>
               ) : (
                 <>
-                  <Link to="/login" className="btn fs-6">
+                  <Link to="/login" className="btn fs-6" onClick={() => setExpanded(false)}>
                     Sign In
                   </Link>
-                  <Link to="/signup" className="btn fs-6">
+                  <Link to="/signup" className="btn fs-6" onClick={() => setExpanded(false)}>
                     Sign Up
                   </Link>
                 </>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PencilSquare } from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import CreateButton from '../CreateButton/CreateButton';
 import { getCells } from '../../slices/cells';
@@ -9,28 +9,23 @@ import './Cells.css';
 
 const Cells = () => {
   const { cells } = useSelector((state) => state.cells);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCells());
-  }, []);
-
-  const handleEdit = (cell) => {
-    navigate('/edit', { state: cell });
-  };
+  }, [dispatch]);
 
   const cellsCollection = cells.map((cell) => (
     <Carousel.Item key={cell.id} className="h-100">
       <Carousel.Caption className="py-0">
-        <button
-          type="button"
-          onClick={() => handleEdit(cell)}
-          className="d-flex align-items-center border border-0 bg-transparent text-white"
+        <Link
+          to="/edit"
+          state={{ item: cell }}
+          className="d-flex align-items-center border border-0 bg-transparent text-white text-decoration-none"
         >
           <span className="fs-1 py-3 m-0 text-capitalize">{cell.title}</span>
           <PencilSquare className=" mx-3 fs-6" />
-        </button>
+        </Link>
         <p className="px-3 col col-lg-6 font-weight-light">{cell.description}</p>
       </Carousel.Caption>
     </Carousel.Item>
@@ -39,7 +34,7 @@ const Cells = () => {
   return (
     <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel interval={9000} className="h-100">{cellsCollection}</Carousel>
+        <Carousel pause={false} interval={9000} className="h-100">{cellsCollection}</Carousel>
       ) : (
         <Carousel className="h-100">
           <Carousel.Item className="h-100">
