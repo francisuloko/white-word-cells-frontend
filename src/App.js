@@ -15,10 +15,6 @@ import Alert from './features/Alerts/Alert';
 import './App.css';
 
 function App() {
-  // const data = JSON.parse(localStorage.getItem('user')) || null;
-  // const UserContext = createContext();
-  // const [user] = useState(data);
-
   return (
     <div className="App d-flex flex-column vh-100">
       <Router>
