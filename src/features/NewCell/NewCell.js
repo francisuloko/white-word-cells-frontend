@@ -55,6 +55,7 @@ const NewCell = () => {
             size="lg"
             placeholder="Add new word"
             onChange={handleChange}
+            autoFocus
           />
           <Form.Control
             as="textarea"
