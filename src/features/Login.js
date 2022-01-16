@@ -8,6 +8,7 @@ import {
   Container, Stack,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
+import logo from '../wwc.png';
 
 import { login } from '../slices/auth';
 import { clearMessage } from '../slices/message';
@@ -53,6 +54,7 @@ const Login = () => {
           gap={2}
           className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 border border-1 rounded shadow text-center"
         >
+          <img src={logo} alt="createIcon" style={{ width: '80px', margin: '0 auto' }} />
           <h2>Sign in</h2>
           <Formik
             initialValues={initialValues}
@@ -91,7 +93,7 @@ const Login = () => {
               <div className="form-group mb-3">
                 <button
                   type="submit"
-                  className="btn btn-primary btn-block form-control"
+                  className="btn btn-primary btn-block form-control rounded"
                   disabled={loading}
                 >
                   {loading && (
