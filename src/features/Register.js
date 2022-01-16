@@ -9,6 +9,8 @@ import {
   Container, Stack,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
+import logo from '../wwc.png';
+
 import { register } from '../slices/auth';
 import { clearMessage } from '../slices/message';
 
@@ -74,7 +76,8 @@ const Register = () => {
           gap={2}
           className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 border border-1 rounded shadow text-center"
         >
-          <h2>Create Account</h2>
+          <img src={logo} alt="createIcon" style={{ width: '80px', margin: '0 auto' }} />
+          <h2>Sign Up</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}

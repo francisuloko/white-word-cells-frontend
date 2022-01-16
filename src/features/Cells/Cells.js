@@ -13,7 +13,7 @@ const Cells = () => {
 
   useEffect(() => {
     dispatch(getCells());
-  }, [dispatch]);
+  }, []);
 
   const cellsCollection = cells.map((cell) => (
     <Carousel.Item key={cell.id} className="h-100">
@@ -23,7 +23,7 @@ const Cells = () => {
           state={{ item: cell }}
           className="d-flex align-items-center border border-0 bg-transparent text-white text-decoration-none"
         >
-          <span className="fs-1 py-3 m-0 text-capitalize">{cell.title}</span>
+          <span className="fs-1 py-3 m-0 text-lowercase text-capitalize">{cell.title}</span>
           <PencilSquare className=" mx-3 fs-6" />
         </Link>
         <p className="px-3 col col-lg-6 font-weight-light">{cell.description}</p>
@@ -34,13 +34,13 @@ const Cells = () => {
   return (
     <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel pause={false} interval={9000} className="h-100">{cellsCollection}</Carousel>
+        <Carousel interval={7000} className="h-100">{cellsCollection}</Carousel>
       ) : (
         <Carousel className="h-100">
           <Carousel.Item className="h-100">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">
-                Add a new Cell.
+                Create Word.
               </h2>
             </Carousel.Caption>
           </Carousel.Item>

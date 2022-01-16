@@ -10,19 +10,17 @@ import About from './features/About/About';
 import Login from './features/Login';
 import Register from './features/Register';
 import LandingPage from './features/LandingPage';
+import Alert from './features/Alerts/Alert';
 
 import './App.css';
 
 function App() {
-  // const data = JSON.parse(localStorage.getItem('user')) || null;
-  // const UserContext = createContext();
-  // const [user] = useState(data);
-
   return (
     <div className="App d-flex flex-column vh-100">
       <Router>
         <Header />
-        <div className="flex-grow-1">
+        <Alert />
+        <div className="flex-grow-1 position-relative">
           <Routes>
             <Route path="/login" exact element={<Login />} />
             <Route path="/signup" exact element={<Register />} />

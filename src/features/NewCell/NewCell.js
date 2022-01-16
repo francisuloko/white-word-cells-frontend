@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   Container, Stack, Form, Button,
 } from 'react-bootstrap';
-import UserService from '../../services/user.service';
 import CharacterCount from '../CharacterCount/CharacterCount';
+import AlertContext from '../Alerts/AlertProvider';
+import { createCell } from '../../slices/cells';
 
 const NewCell = () => {
+  const dispatch = useDispatch();
+  const alert = useContext(AlertContext);
+
   const navigate = useNavigate();
   const [cell, setCell] = useState({ title: '', description: '' });
 
   const handleCreate = (cell) => {
     if (cell.title) {
-      UserService.createCell(cell);
+      dispatch(createCell(cell)).then(
+        alert.success('Create successful!'),
+      );
+    } else {
+      alert.success('Invalid word');
     }
   };
 
@@ -46,6 +55,7 @@ const NewCell = () => {
             size="lg"
             placeholder="Add new word"
             onChange={handleChange}
+            autoFocus
           />
           <Form.Control
             as="textarea"
