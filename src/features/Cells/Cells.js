@@ -34,13 +34,13 @@ const Cells = () => {
   return (
     <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel pause={false} interval={9000} className="h-100">{cellsCollection}</Carousel>
+        <Carousel interval={7000} className="h-100">{cellsCollection}</Carousel>
       ) : (
         <Carousel className="h-100">
           <Carousel.Item className="h-100">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">
-                Add a new Cell.
+                Create Word.
               </h2>
             </Carousel.Caption>
           </Carousel.Item>
