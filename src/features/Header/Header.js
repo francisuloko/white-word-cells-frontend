@@ -10,7 +10,7 @@ import { logout } from '../../slices/auth';
 import EventBus from '../../common/EventBus';
 
 const Header = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const Header = () => {
               {isLoggedIn ? (
                 <Dropdown drop="down" autoClose="true">
                   <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
-                    Me
+                    { user }
                   </Dropdown.Toggle>
                   <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
                     <Dropdown.Item to="/" onClick={logOut}>

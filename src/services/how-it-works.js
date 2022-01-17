@@ -42,7 +42,7 @@ const instructions = [
   {
     id: 9,
     title: 'That\'s it!',
-    description: 'Stay motivated 💪',
+    description: 'Stay positive! 💪',
   },
 ];
 
