@@ -1,4 +1,3 @@
-/* eslint-disable no-unneeded-ternary */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -62,7 +61,7 @@ const Header = () => {
               {isLoggedIn ? (
                 <Dropdown drop="down" autoClose="true">
                   <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
-                    { user }
+                    { user || 'Me' }
                   </Dropdown.Toggle>
                   <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
                     <Dropdown.Item to="/" onClick={logOut}>
