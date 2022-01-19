@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,9 +6,11 @@ const LandingPage = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  if (isLoggedIn) {
-    navigate('/cells');
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/cells');
+    }
+  });
 
   return (
     <div className="module h-100">
