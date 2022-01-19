@@ -40,7 +40,7 @@ const Cells = () => {
           <Carousel.Item className="h-100">
             <Carousel.Caption className="col-6">
               <h2 className="d-flex align-items-center p-3 m-0">
-                Create Word.
+                Create Word
               </h2>
             </Carousel.Caption>
           </Carousel.Item>
