@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -16,6 +16,7 @@ const EditCell = () => {
   const location = useLocation();
   const { item } = location.state;
   const [cell, setCell] = useState(item);
+  const [charTooLong, setCharTooLong] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +44,19 @@ const EditCell = () => {
     );
     navigate('/cells');
   };
+
+  useEffect(() => {
+    setCharTooLong(false);
+    if (/\s/.test(cell.title)) {
+      setCharTooLong(true);
+      alert.error('No space allowed');
+    }
+
+    if (cell.description.length > 300
+      || cell.title === '') {
+      setCharTooLong(true);
+    }
+  });
 
   return (
     <Container>
@@ -72,7 +86,7 @@ const EditCell = () => {
           onChange={handleChange}
           style={{ height: '200px' }}
         />
-        <Button variant="primary" onClick={() => handleSubmit(cell)}>
+        <Button disabled={charTooLong} variant="primary" onClick={() => handleSubmit(cell)}>
           Save
         </Button>
       </Stack>

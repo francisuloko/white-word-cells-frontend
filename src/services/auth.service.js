@@ -19,8 +19,6 @@ const register = (name, email, password) => {
     url: `${API_URL}signup`,
     method: 'post',
     data: { name, email, password },
-  }).then(() => {
-    login(email, password);
   });
 };
 

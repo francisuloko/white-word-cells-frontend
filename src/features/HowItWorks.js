@@ -20,14 +20,14 @@ const Instructions = () => {
         >
           <span className="fs-1 py-3 m-0 text-capitalize">{instruction.title}</span>
         </button>
-        <p className="px-3 col col-lg-5 font-weight-normal">{instruction.description}</p>
+        <p className="px-3 col col-lg-5" style={{ fontWeight: 'light' }}>{instruction.description}</p>
       </Carousel.Caption>
     </Carousel.Item>
   ));
 
   return (
     <div className="module mid h-100">
-      <Carousel pause={false} interval={7000} className="h-100">{instructionsCollection}</Carousel>
+      <Carousel interval={7000} className="h-100">{instructionsCollection}</Carousel>
     </div>
   );
 };
