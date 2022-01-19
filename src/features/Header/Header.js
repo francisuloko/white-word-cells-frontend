@@ -61,7 +61,7 @@ const Header = () => {
               {isLoggedIn ? (
                 <Dropdown drop="down" autoClose="true">
                   <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
-                    { user || 'Me' }
+                    { user }
                   </Dropdown.Toggle>
                   <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
                     <Dropdown.Item to="/" onClick={logOut}>
