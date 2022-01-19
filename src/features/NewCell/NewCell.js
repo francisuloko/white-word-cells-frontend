@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -11,6 +11,7 @@ import { createCell } from '../../slices/cells';
 const NewCell = () => {
   const dispatch = useDispatch();
   const alert = useContext(AlertContext);
+  const [charTooLong, setCharTooLong] = useState(false);
 
   const navigate = useNavigate();
   const [cell, setCell] = useState({ title: '', description: '' });
@@ -27,7 +28,6 @@ const NewCell = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setCell({
       ...cell,
       [name]: value,
@@ -39,6 +39,19 @@ const NewCell = () => {
     handleCreate(cell);
     setCell({ title: '', description: '' });
   };
+
+  useEffect(() => {
+    setCharTooLong(false);
+    if (/\s/.test(cell.title)) {
+      setCharTooLong(true);
+      alert.error('No space allowed');
+    }
+
+    if (cell.description.length > 300
+      || cell.title === '') {
+      setCharTooLong(true);
+    }
+  });
 
   return (
     <>
@@ -53,7 +66,7 @@ const NewCell = () => {
             name="title"
             value={cell.title}
             size="lg"
-            placeholder="Add new word"
+            placeholder="Word"
             onChange={handleChange}
             autoFocus
           />
@@ -61,12 +74,12 @@ const NewCell = () => {
             as="textarea"
             name="description"
             value={cell.description}
-            placeholder="Add story here"
+            placeholder="Description"
             onChange={handleChange}
             style={{ height: '200px' }}
           />
           <CharacterCount desc={cell.description} />
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button disabled={charTooLong} variant="primary" onClick={handleSubmit}>
             Save
           </Button>
           <Button variant="secondary" onClick={() => navigate('/cells')}>
