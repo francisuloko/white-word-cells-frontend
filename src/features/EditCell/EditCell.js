@@ -56,7 +56,7 @@ const EditCell = () => {
       || cell.title === '') {
       setCharTooLong(true);
     }
-  });
+  }, []);
 
   return (
     <Container>

@@ -2,27 +2,27 @@ const instructions = [
   {
     id: 1,
     title: 'Login',
-    description: 'Login to your account using your email and password to view a slideshow of your words.',
+    description: 'Login with your email and password to create, read, update and delete your words.',
   },
   {
     id: 2,
     title: 'Create Word',
-    description: 'Click the blue plus icon to create a new word. Then enter a title with an optional description and click save. Click done to return to the homepage.',
+    description: 'Click the blue plus icon to create a new word. Then click done to return to the homepage.',
   },
   {
     id: 3,
     title: 'Edit Word',
-    description: 'Click the square pencil icon on each slide, then make the changes and click save.',
+    description: 'Click the pencil icon, update the word and click save.',
   },
   {
     id: 4,
     title: 'Delete Word',
-    description: 'Click the square pencil icon on each slide, then click the trash icon to delete the word.',
+    description: 'Click the pencil icon, then click the trash icon.',
   },
   {
     id: 5,
     title: 'Next/Prev',
-    description: 'Click the left or right chevron icons to move through the list of created words.',
+    description: 'Click the chevron icons to move through the list of created words.',
   },
   {
     id: 6,
@@ -32,22 +32,22 @@ const instructions = [
   {
     id: 7,
     title: 'Pause',
-    description: 'Pause the carousel by hovering over the item currently displayed on the homepage.',
+    description: 'Place your mouse over the current word.',
   },
   {
     id: 8,
     title: 'Background',
-    description: 'Refresh the page to change the background image.',
+    description: 'Refresh the page to change the background.',
   },
   {
     id: 9,
     title: 'Logout',
-    description: 'Click the drop-down menu on the Navbar, then click logout to exit from your account.',
+    description: 'Click the drop-down menu on the Navbar, then click logout.',
   },
   {
     id: 10,
     title: 'Finally',
-    description: 'Always remember to stay positive.',
+    description: 'Stay positive.',
   },
 ];
 

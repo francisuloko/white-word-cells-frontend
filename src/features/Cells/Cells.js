@@ -26,7 +26,7 @@ const Cells = () => {
           <span className="fs-1 py-3 m-0 text-lowercase text-capitalize">{cell.title}</span>
           <PencilSquare className=" mx-3 fs-6" />
         </Link>
-        <p className="px-3 col col-lg-6 font-weight-light">{cell.description}</p>
+        <p className="px-3 col-12 col-md-8 col-lg-5 font-weight-light">{cell.description}</p>
       </Carousel.Caption>
     </Carousel.Item>
   ));
@@ -34,7 +34,7 @@ const Cells = () => {
   return (
     <div className="module mid h-100">
       {cellsCollection.length > 0 ? (
-        <Carousel interval={7000} className="h-100">{cellsCollection}</Carousel>
+        <Carousel interval={10000} className="h-100">{cellsCollection}</Carousel>
       ) : (
         <Carousel className="h-100">
           <Carousel.Item className="h-100">
