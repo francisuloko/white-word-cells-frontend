@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -6,7 +6,6 @@ import {
 } from 'react-bootstrap';
 import logo from '../../wwc.png';
 import { logout } from '../../slices/auth';
-import EventBus from '../../common/EventBus';
 
 const Header = () => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
@@ -14,24 +13,19 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const logOut = useCallback(() => {
-    dispatch(logout());
-    setExpanded(false);
-  }, [dispatch]);
-
-  useEffect(() => {
-    EventBus.on('logout', () => {
-      logOut();
-    });
-
-    return () => {
-      EventBus.remove('logout');
-    };
-  }, [isLoggedIn, logOut]);
-
   const handleClick = () => (
     isLoggedIn ? navigate('/cells') : navigate('/')
   );
+
+  const handleLogout = () => {
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
+        localStorage.removeItem('whiteWordCellsUser');
+      });
+
+    setExpanded(false);
+  };
 
   return (
     <header className="w-100 p-0 border border-bottom">
@@ -61,10 +55,10 @@ const Header = () => {
               {isLoggedIn ? (
                 <Dropdown drop="down" autoClose="true">
                   <Dropdown.Toggle variant="" id="dropdown-autoclose-true">
-                    { user }
+                    { user.name }
                   </Dropdown.Toggle>
                   <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
-                    <Dropdown.Item to="/" onClick={logOut}>
+                    <Dropdown.Item to="/" onClick={handleLogout}>
                       Logout
                     </Dropdown.Item>
                   </Dropdown.Menu>
