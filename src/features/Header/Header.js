@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-100 p-0 border border-bottom">
+    <header className="sticky-top p-0 border border-bottom">
       <Navbar expanded={expanded} expand="lg" className="p-1" bg="white" variant="light">
         <Container>
           <Navbar.Brand
