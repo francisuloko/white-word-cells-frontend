@@ -1,16 +1,38 @@
 /* eslint no-param-reassign: "error" */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
-import AuthService from '../services/auth.service';
+import whiteWordCellsAPI from '../common/whiteWordCellsAPI';
 
-const data = JSON.parse(localStorage.getItem('user'));
+const user = JSON.parse(localStorage.getItem('whiteWordCellsUser'));
 
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
-      const user = await AuthService.login(email, password);
-      return user;
+      const response = await whiteWordCellsAPI.post('login', {
+        email,
+        password,
+      });
+      localStorage.setItem('whiteWordCellsUser', JSON.stringify(response.data.user.name));
+      return response.data;
+    } catch (error) {
+      const message = (error.response
+          && error.response.data
+          && error.response.data.message)
+        || error.message
+        || error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
+
+export const loginStatus = createAsyncThunk(
+  'auth/login',
+  async (thunkAPI) => {
+    try {
+      const response = await whiteWordCellsAPI.get('loggedin');
+      return response.data;
     } catch (error) {
       const message = (error.response
           && error.response.data
@@ -27,9 +49,13 @@ export const register = createAsyncThunk(
   'auth/register',
   async ({ name, email, password }, thunkAPI) => {
     try {
-      const response = await AuthService.register(name, email, password);
-      thunkAPI.dispatch(setMessage(response));
-      return name;
+      const response = await whiteWordCellsAPI.post('users', {
+        name,
+        email,
+        password,
+      });
+      thunkAPI.dispatch(setMessage(response.data));
+      return response.data;
     } catch (error) {
       const message = (error.response && error.response && error.response.message)
         || error.message
@@ -40,35 +66,58 @@ export const register = createAsyncThunk(
   },
 );
 
-export const logout = createAsyncThunk('auth/logout', async () => {
-  await AuthService.logout();
-});
+export const logout = createAsyncThunk(
+  'auth/logout', async (thunkAPI) => {
+    try {
+      const response = await whiteWordCellsAPI.delete('logout');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  },
+);
 
-const initialState = data
-  ? { isLoggedIn: true, user: data.name }
-  : { isLoggedIn: false, user: null };
+const initialState = user ? {
+  user,
+  isLoggedIn: true,
+  status: 'idle',
+  error: null,
+} : {
+  user: null,
+  isLoggedIn: false,
+  status: 'idle',
+  error: null,
+};
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
     [register.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload;
+      state.isLoggedIn = action.payload.logged_in;
+      state.user = action.payload.user;
     },
-    [register.rejected]: (state) => {
-      state.isLoggedIn = false;
+    [register.rejected]: (state, action) => {
+      state.isLoggedIn = action.payload.logged_in;
     },
     [login.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload;
+      state.isLoggedIn = action.payload.logged_in;
+      state.user = action.payload.user;
     },
-    [login.rejected]: (state) => {
-      state.isLoggedIn = false;
+    [login.rejected]: (state, action) => {
+      state.isLoggedIn = action.payload.logged_in;
       state.user = null;
     },
-    [logout.fulfilled]: (state) => {
-      state.isLoggedIn = false;
+    [loginStatus.fulfilled]: (state, action) => {
+      state.isLoggedIn = action.payload.logged_in;
+      state.user = action.payload.user;
+    },
+    [loginStatus.rejected]: (state, action) => {
+      state.isLoggedIn = action.payload.logged_in;
+      state.user = null;
+    },
+    [logout.fulfilled]: (state, action) => {
+      state.isLoggedIn = action.payload.logged_in;
       state.user = null;
     },
   },
