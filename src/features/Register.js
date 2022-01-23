@@ -10,8 +10,6 @@ import {
 } from 'react-bootstrap';
 import * as Yup from 'yup';
 import logo from '../wwc.png';
-
-import authService from '../services/auth.service';
 import { register } from '../slices/auth';
 import { clearMessage } from '../slices/message';
 
@@ -63,7 +61,6 @@ const Register = () => {
       .unwrap()
       .then(() => {
         setSuccessful(true);
-        authService.login({ email, password });
         navigate('/cells');
       })
       .catch(() => {

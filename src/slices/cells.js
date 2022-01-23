@@ -1,11 +1,11 @@
 /* eslint no-param-reassign: "error" */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
-import UserService from '../services/user.service';
+import whiteWordCellsAPI from '../common/whiteWordCellsAPI';
 
 export const getCells = createAsyncThunk('cells/all', async (thunkAPI) => {
   try {
-    const response = await UserService.getCells();
+    const response = await whiteWordCellsAPI.get('cells');
     return response.data;
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message)
@@ -18,7 +18,7 @@ export const getCells = createAsyncThunk('cells/all', async (thunkAPI) => {
 
 export const createCell = createAsyncThunk('cells/create', async (cell, thunkAPI) => {
   try {
-    const response = await UserService.createCell(cell);
+    const response = await whiteWordCellsAPI.post('cells', cell);
     return response.data;
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message)
@@ -31,9 +31,9 @@ export const createCell = createAsyncThunk('cells/create', async (cell, thunkAPI
 
 export const editCell = createAsyncThunk('cell/edit', async (cell, thunkAPI) => {
   try {
-    await UserService.editCell(cell);
+    const response = await whiteWordCellsAPI.put(`cells/${cell.id}`, cell);
     thunkAPI.dispatch(getCells());
-    return cell;
+    return response.data;
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message)
       || error.message
@@ -45,9 +45,9 @@ export const editCell = createAsyncThunk('cell/edit', async (cell, thunkAPI) => 
 
 export const deleteCell = createAsyncThunk('cell/delete', async (cell, thunkAPI) => {
   try {
-    await UserService.deleteCell(cell);
+    const response = await whiteWordCellsAPI.delete(`cells/${cell.id}`);
     thunkAPI.dispatch(getCells());
-    return cell;
+    return response.data;
   } catch (error) {
     const message = (error.response && error.response.data && error.response.data.message)
       || error.message
@@ -67,9 +67,6 @@ const cellSlice = createSlice({
   extraReducers: {
     [getCells.fulfilled]: (state, action) => {
       state.cells = action.payload;
-    },
-    [createCell.fulfilled]: (state, action) => {
-      state.cells = [...state, action.payload];
     },
   },
 });
