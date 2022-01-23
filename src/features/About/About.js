@@ -7,7 +7,8 @@ const About = () => (
       White Word Cells lets you save words with custom descriptions.
       It is modelled after the white blood cells
       to help you fight negative thoughts. You can
-      store personalized affirmations and motivations or reframe words
+      store personal affirmations or motivations,
+      describe your pet or reframe words
       with bad vibes. We are made of word, what words are
       you made of?
     </p>
