@@ -2,7 +2,7 @@ const instructions = [
   {
     id: 1,
     title: 'Login',
-    description: 'Login with your email and password to create, read, update and delete your words.',
+    description: 'Login with your email and password to create, read, update and delete words.',
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ const instructions = [
   {
     id: 10,
     title: 'Finally',
-    description: 'Stay positive.',
+    description: 'Always stay positive.',
   },
 ];
 
