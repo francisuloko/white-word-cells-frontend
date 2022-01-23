@@ -51,14 +51,14 @@ const NewCell = () => {
       || cell.title === '') {
       setCharTooLong(true);
     }
-  });
+  }, [handleChange]);
 
   return (
     <>
       <Container>
         <Stack
           gap={2}
-          className="col-md-5 col-lg-4 text-center p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow"
+          className="col-md-5 col-lg-4 p-3 pb-4 mx-auto mt-3"
         >
           <h2>Create word</h2>
           <Form.Control

@@ -7,12 +7,9 @@ const user = JSON.parse(localStorage.getItem('whiteWordCellsUser'));
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ email, password }, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const response = await whiteWordCellsAPI.post('login', {
-        email,
-        password,
-      });
+      const response = await whiteWordCellsAPI.post('login', { user: params });
       localStorage.setItem('whiteWordCellsUser', JSON.stringify(response.data.user.name));
       return response.data;
     } catch (error) {
@@ -47,14 +44,9 @@ export const loginStatus = createAsyncThunk(
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ name, email, password }, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const response = await whiteWordCellsAPI.post('users', {
-        name,
-        email,
-        password,
-      });
-      thunkAPI.dispatch(setMessage(response.data));
+      const response = await whiteWordCellsAPI.post('users', { user: params });
       return response.data;
     } catch (error) {
       const message = (error.response && error.response && error.response.message)

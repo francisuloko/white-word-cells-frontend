@@ -34,10 +34,9 @@ const Login = () => {
   });
 
   const handleLogin = (formValue) => {
-    const { email, password } = formValue;
     setLoading(true);
 
-    dispatch(login({ email, password }))
+    dispatch(login(formValue))
       .unwrap()
       .then(() => {
         navigate('/cells');
@@ -52,10 +51,10 @@ const Login = () => {
       <Container>
         <Stack
           gap={2}
-          className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 border border-1 rounded shadow text-center"
+          className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 text-center"
         >
-          <img src={logo} alt="createIcon" style={{ width: '80px', margin: '0 auto' }} />
-          <h2>Sign in</h2>
+          <img src={logo} alt="createIcon" className="rounded-circle shadow" style={{ width: '50px', margin: '0 auto' }} />
+          <h3>Sign in</h3>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}

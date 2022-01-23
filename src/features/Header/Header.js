@@ -66,10 +66,10 @@ const Header = () => {
               ) : (
                 <>
                   <Link to="/login" className="btn fs-6" onClick={() => setExpanded(false)}>
-                    Sign In
+                    Sign in
                   </Link>
                   <Link to="/signup" className="btn fs-6" onClick={() => setExpanded(false)}>
-                    Sign Up
+                    Sign up
                   </Link>
                 </>
               )}
