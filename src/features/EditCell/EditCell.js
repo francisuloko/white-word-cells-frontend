@@ -32,10 +32,10 @@ const EditCell = () => {
       dispatch(editCell(cell)).then(
         alert.success('Update succesful!'),
       );
+      navigate('/cells');
     } else {
       alert.success('Title can\'t be blank');
     }
-    navigate('/cells');
   };
 
   const handleDelete = (cell) => {
@@ -56,15 +56,15 @@ const EditCell = () => {
       || cell.title === '') {
       setCharTooLong(true);
     }
-  }, []);
+  }, [handleChange]);
 
   return (
     <Container>
       <Stack
         gap={2}
-        className="col-md-6 col-lg-4 p-3 pb-4 mx-auto mt-3 border border-1 rounded shadow position-relative"
+        className="col-md-6 col-lg-4 p-3 pb-4 mx-auto mt-3 position-relative"
       >
-        <h2 className="text-center">Edit Word</h2>
+        <h2 className="text-cente">Edit Word</h2>
         <div className="d-flex align-items-center">
           <Form.Control
             type="text"
