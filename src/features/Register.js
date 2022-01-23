@@ -14,6 +14,7 @@ import { register } from '../slices/auth';
 import { clearMessage } from '../slices/message';
 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -51,13 +52,8 @@ const Register = () => {
   });
 
   const handleRegister = (formValue) => {
-    const {
-      name, email, password,
-    } = formValue;
-
-    dispatch(register({
-      name, email, password,
-    }))
+    setLoading(true);
+    dispatch(register(formValue))
       .unwrap()
       .then(() => {
         setSuccessful(true);
@@ -65,6 +61,7 @@ const Register = () => {
       })
       .catch(() => {
         setSuccessful(false);
+        setLoading(false);
       });
   };
 
@@ -73,10 +70,10 @@ const Register = () => {
       <Container>
         <Stack
           gap={2}
-          className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 border border-1 rounded shadow text-center"
+          className="col col-md-6 col-lg-4 p-4 mx-auto mt-3 text-center"
         >
-          <img src={logo} alt="createIcon" style={{ width: '80px', margin: '0 auto' }} />
-          <h2>Sign Up</h2>
+          <img src={logo} alt="createIcon" className="rounded-circle shadow" style={{ width: '50px', margin: '0 auto' }} />
+          <h3>Sign up</h3>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -127,8 +124,15 @@ const Register = () => {
                 </div>
 
                 <div className="form-group mb-3">
-                  <button type="submit" className="btn btn-primary btn-block form-control">
-                    Sign Up
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block form-control rounded"
+                    disabled={loading}
+                  >
+                    {loading && (
+                    <span className="spinner-border spinner-border-sm" />
+                    )}
+                    <span>Submit</span>
                   </button>
                 </div>
               </div>
