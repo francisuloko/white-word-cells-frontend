@@ -8,10 +8,10 @@ import {
   Container, Stack,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
-import logo from '../wwc.png';
+import logo from '../../wwc.png';
 
-import { login } from '../slices/auth';
-import { clearMessage } from '../slices/message';
+import { login } from '../../slices/auth';
+import { clearMessage } from '../../slices/message';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
