@@ -9,9 +9,9 @@ import {
   Container, Stack,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
-import logo from '../wwc.png';
-import { register } from '../slices/auth';
-import { clearMessage } from '../slices/message';
+import logo from '../../wwc.png';
+import { register } from '../../slices/auth';
+import { clearMessage } from '../../slices/message';
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
