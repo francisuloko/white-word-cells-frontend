@@ -9,7 +9,6 @@ import EditCell from './features/EditCell/EditCell';
 import Header from './features/Header/Header';
 import Instructions from './features/HowItWorks';
 import About from './features/About/About';
-// import Profile from './features/User/Profile';
 import Login from './features/User/Login';
 import Register from './features/User/Register';
 import LandingPage from './features/LandingPage';
@@ -38,9 +37,6 @@ const App = () => {
             <Route exact path="/cells" element={<PrivateRoute />}>
               <Route exact path="/cells" element={<Cells />} />
             </Route>
-            {/* <Route exact path="/profile" element={<PrivateRoute />}>
-              <Route exact path="/profile" element={<Profile />} />
-            </Route> */}
             <Route exact path="/new" element={<PrivateRoute />}>
               <Route exact path="/new" element={<NewCell />} />
             </Route>

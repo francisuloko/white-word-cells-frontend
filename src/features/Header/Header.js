@@ -6,7 +6,6 @@ import {
 } from 'react-bootstrap';
 import logo from '../../wwc.png';
 import { logout } from '../../slices/auth';
-// import { fetchUser } from '../../slices/user';
 
 const Header = () => {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
@@ -27,10 +26,6 @@ const Header = () => {
 
     setExpanded(false);
   };
-
-  // const handleProfile = () => {
-  //   dispatch(fetchUser());
-  // };
 
   return (
     <header className="sticky-top p-0 border border-bottom">
@@ -63,14 +58,6 @@ const Header = () => {
                     { user.name }
                   </Dropdown.Toggle>
                   <Dropdown.Menu align={{ lg: 'end' }} className="mt-2">
-                    {/* <Link
-                      to="/profile"
-                      onClick={handleProfile}
-                      className="text-decoration-none text-dark m-3"
-                    >
-                      Profile
-                    </Link>
-                    <hr /> */}
                     <Dropdown.Item to="/" onClick={handleLogout}>
                       Logout
                     </Dropdown.Item>
