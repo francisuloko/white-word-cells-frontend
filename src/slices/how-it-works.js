@@ -1,7 +1,7 @@
 /* eslint no-param-reassign: "error" */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
-import instructions from '../services/how-it-works';
+import instructions from '../features/HowItWorks/how-it-works';
 
 export const getInstructions = createAsyncThunk('instructions/all', async (thunkAPI) => {
   try {
