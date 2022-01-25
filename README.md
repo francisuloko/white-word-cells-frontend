@@ -2,15 +2,17 @@
 
 > White Word Cells is a word store app that lets users store words with custom description.
 
-### Screenshots
 
-White Word Cells lets you save words with custom descriptions. You can store personal affirmations or motivations, describe your pet or reframe words with bad vibes. It is modelled after the white blood cells to help you fight negative thoughts. We are made of word, what words are you made of? 
+
+![](./src/whitewordcellsscreenshot.png)
+
+ You can store personalized affirmations or motivations, describe your pet or reframe words with bad vibes. It is modelled after the white blood cells to help you fight negative thoughts.
 
 ## RAILS BACKEND
 
 Check out the White Word Cell Backend Repo [here](https://github.com/francisuloko/white-word-cells-backend)
 
-Or sign up at [whitewordcells.com](whitewordcells.com)
+Or sign up at [whitewordcells.com](https://whitewordcells.com)
 
 ## Built With
 
@@ -25,24 +27,19 @@ Or sign up at [whitewordcells.com](whitewordcells.com)
 
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To get a local copy, run the following commands:
+```
+git clone https://github.com/francisuloko/white-word-cells-frontend.git
 
-- To get a local copy of this project, run
-
-  `git clone https://github.com/francisuloko/white-word-cells-frontend.git`
-
-- Change into the project directory, run
-
-  `cd white-word-cells-frontend`
-
-
-Run the following commands to get started
-
+cd white-word-cells-frontend
 ```
 
+
+To get started, run the following commands to get started:
+
+```
 npm install
 npm start
-
 ```
 
 ## Authors
@@ -65,15 +62,13 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- [Bezkoder - Login/Register](https://www.bezkoder.com/react-redux-login-example-toolkit-hooks/)
-- [Agi Letkiewicz Tanner - Athenticatin/Sessions](https://medium.com/@altanner/react-user-authentication-with-rails-sessions-and-redux-194b5d31fe5a)
-- [Sahil Thakur - Simple Alerts](https://easyontheweb.com/creating-simple-alerts-with-react-and-redux/)
-- [Unsplash - Background Images](https://unsplash.com/)
+- [Agi Letkiewicz Tanner](https://medium.com/@altanner/react-user-authentication-with-rails-sessions-and-redux-194b5d31fe5a)
+- [Bezkoder](https://www.bezkoder.com/react-redux-login-example-toolkit-hooks/)
+- [Sahil Thakur](https://easyontheweb.com/creating-simple-alerts-with-react-and-redux/)
+- [Unsplash](https://unsplash.com/)
 - [Mustapha Yakubu]()
-- [Iajy Abby](https://github.com/IjayAbby)
 - [Adonike Sylvester](https://github.com/Sly-Cloud)
-
-
+- [Iajy Abby](https://github.com/IjayAbby)
 
 
 ## 📝 License
