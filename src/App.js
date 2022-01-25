@@ -7,7 +7,7 @@ import Cells from './features/Cells/Cells';
 import NewCell from './features/NewCell/NewCell';
 import EditCell from './features/EditCell/EditCell';
 import Header from './features/Header/Header';
-import Instructions from './features/HowItWorks';
+import Instructions from './features/HowItWorks/HowItWorks';
 import About from './features/About/About';
 import Login from './features/User/Login';
 import Register from './features/User/Register';

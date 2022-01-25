@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Carousel } from 'react-bootstrap';
-import { getInstructions } from '../slices/how-it-works';
+import { getInstructions } from '../../slices/how-it-works';
 
 const Instructions = () => {
   const { instructions } = useSelector((state) => state.instructions);
