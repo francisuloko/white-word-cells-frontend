@@ -65,7 +65,16 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- [Bezkoder](https://mit-license.org)
+- [Bezkoder - Login/Register](https://www.bezkoder.com/react-redux-login-example-toolkit-hooks/)
+- [Agi Letkiewicz Tanner - Athenticatin/Sessions](https://medium.com/@altanner/react-user-authentication-with-rails-sessions-and-redux-194b5d31fe5a)
+- [Sahil Thakur - Simple Alerts](https://easyontheweb.com/creating-simple-alerts-with-react-and-redux/)
+- [Unsplash - Background Images](https://unsplash.com/)
+- [Mustapha Yakubu]()
+- [Iajy Abby](https://github.com/IjayAbby)
+- [Adonike Sylvester](https://github.com/Sly-Cloud)
+
+
+
 
 ## 📝 License
 
