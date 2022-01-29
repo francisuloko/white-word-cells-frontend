@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const whiteWordCellsAPI = axios.create({
-  baseURL: 'https://whitewordcells.herokuapp.com/api/v1/',
+  baseURL: 'https://whitewordcells.herokuapp.com/',
   // withCredentials: true,
   'Access-Control-Allow-Credentials': true,
 });
