@@ -9,7 +9,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (params, thunkAPI) => {
     try {
-      const response = await whiteWordCellsAPI.post('api/vi/login', { user: params });
+      const response = await whiteWordCellsAPI.post('login', { user: params });
       localStorage.setItem('whiteWordCellsUser', JSON.stringify(response.data.user.name));
       return response.data;
     } catch (error) {
@@ -28,7 +28,7 @@ export const loginStatus = createAsyncThunk(
   'auth/login',
   async (thunkAPI) => {
     try {
-      const response = await whiteWordCellsAPI.get('api/v1/loggedin');
+      const response = await whiteWordCellsAPI.get('loggedin');
       return response.data;
     } catch (error) {
       const message = (error.response
@@ -46,7 +46,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (params, thunkAPI) => {
     try {
-      const response = await whiteWordCellsAPI.post('api/v1/users', { user: params });
+      const response = await whiteWordCellsAPI.post('users', { user: params });
       return response.data;
     } catch (error) {
       const message = (error.response && error.response && error.response.message)
@@ -61,7 +61,7 @@ export const register = createAsyncThunk(
 export const logout = createAsyncThunk(
   'auth/logout', async (thunkAPI) => {
     try {
-      const response = await whiteWordCellsAPI.delete('api/v1/logout');
+      const response = await whiteWordCellsAPI.delete('logout');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
